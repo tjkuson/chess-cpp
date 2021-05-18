@@ -10,7 +10,7 @@ namespace chess {
 		white,
 		black
 	};
-	void operator++();
+	colour& operator++(colour& c);
 	std::ostream& operator<<(std::ostream& os, const colour& c);
 }
 

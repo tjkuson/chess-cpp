@@ -22,12 +22,12 @@ namespace chess {
 		board();
 		~board();
 		// Prototype functions
-		[[nodiscard]] bool position_in_range(const position& pos) const;
-		[[nodiscard]] bool square_is_occupied(const position& pos) const;
-		void place_piece(const position& pos, const std::shared_ptr<piece>& piece_pointer);
-		void place_piece_without_updating(const position& pos, const std::shared_ptr<piece>& piece_pointer);
+		[[nodiscard]] bool in_range(const position& pos) const;
+		[[nodiscard]] bool occupied(const position& pos) const;
+		void place_piece(const position& pos, const std::shared_ptr<piece>& piece_ptr);
+		void place_piece_no_update(const position& pos, const std::shared_ptr<piece>& piece_ptr);
 		[[nodiscard]] std::shared_ptr<piece> get_piece(const position& pos) const;
-		[[nodiscard]] position find_king_position(const colour& king_colour) const;
+		[[nodiscard]] position find_king(const colour& king_colour) const;
 	};
 }
 

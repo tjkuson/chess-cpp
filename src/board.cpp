@@ -25,7 +25,7 @@ board::~board()
 }
 
 // Check position is in range on board
-bool board::position_in_range(const position& pos) const
+bool board::in_range(const position& pos) const
 {
 	int row;
 	int col;
@@ -37,7 +37,7 @@ bool board::position_in_range(const position& pos) const
 }
 
 // Check position is occupied by piece on board
-bool board::square_is_occupied(const position& pos) const
+bool board::occupied(const position& pos) const
 {
 	int row;
 	int col;
@@ -46,23 +46,23 @@ bool board::square_is_occupied(const position& pos) const
 }
 
 // Store pointer to new piece in squares vector
-void board::place_piece(const position& pos, const std::shared_ptr<piece>& piece_pointer)
+void board::place_piece(const position& pos, const std::shared_ptr<piece>& piece_ptr)
 {
-	place_piece_without_updating(pos, piece_pointer);
+	place_piece_no_update(pos, piece_ptr);
 	// Tell the piece to update it's position variable
-	if (piece_pointer!=nullptr) {
-		piece_pointer->set_position(pos);
+	if (piece_ptr!=nullptr) {
+		piece_ptr->set_position(pos);
 	}
 }
 
 // Store pointer to new piece in squares vector
 // This is used when we don't want the piece to change its location e.g. testing possible moves for checks
-void board::place_piece_without_updating(const position& pos, const std::shared_ptr<piece>& piece_pointer)
+void board::place_piece_no_update(const position& pos, const std::shared_ptr<piece>& piece_ptr)
 {
 	int row;
 	int col;
 	std::tie(row, col) = pos.get_position();
-	squares[row][col] = piece_pointer;
+	squares[row][col] = piece_ptr;
 }
 
 // Return pointer corresponding to position
@@ -75,16 +75,16 @@ std::shared_ptr<piece> board::get_piece(const position& pos) const
 }
 
 // Return position of king
-position board::find_king_position(const colour& king_colour) const
+position board::find_king(const colour& king_colour) const
 {
 	const std::string king_icon{ (king_colour==colour::white) ? "♔" : "♚" };
 	for (int row{ 0 }; row<8; row++) {
 		for (int col{ 0 }; col<8; col++) {
-			const position position_visiting{ std::pair<int, int>{ row, col }};
-			if (square_is_occupied(position_visiting)) {
-				const std::shared_ptr<piece> piece_pointer{ get_piece(position_visiting) };
-				if (piece_pointer->get_icon()==king_icon) {
-					return position_visiting;
+			const position visiting_pos{ std::pair<int, int>{ row, col }};
+			if (occupied(visiting_pos)) {
+				const std::shared_ptr<piece> piece_ptr{ get_piece(visiting_pos) };
+				if (piece_ptr->get_icon()==king_icon) {
+					return visiting_pos;
 				}
 			}
 		}

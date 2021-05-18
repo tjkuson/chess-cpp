@@ -10,7 +10,7 @@
 namespace chess {
 	class king : public piece {
 	public:
-		king(colour init_colour, const position& init_position);
+		king(colour init_colour, const position& init_pos);
 		void load_possible_moves(const board& chess_board) override;
 	};
 }

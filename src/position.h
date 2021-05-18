@@ -15,12 +15,12 @@ namespace chess {
 	public:
 		// Prototype constructors and destructor
 		position();
-		explicit position(std::pair<int, int> initial_position);
-		explicit position(const std::pair<std::string, std::string>& initial_position);
+		explicit position(std::pair<int, int> init_pos);
+		explicit position(const std::pair<std::string, std::string>& init_pos);
 		~position();
 		// Prototype functions
 		[[nodiscard]] std::pair<int, int> get_position() const;
-		[[nodiscard]] position get_position_with_offset(int row_offset, int col_offset) const;
+		[[nodiscard]] position get_offset(int row_offset, int col_offset) const;
 		[[nodiscard]] bool operator==(const position& rhs) const;
 	};
 }
