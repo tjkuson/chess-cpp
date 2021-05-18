@@ -54,8 +54,8 @@ game::game()
 		piece_ptr = std::make_shared<queen>(piece_colour, piece_pos);
 		chess_board.place_piece(piece_pos, piece_ptr);
 	}
-	std::cout << "Game start!" << std::endl;
-	std::cout << "White pieces look like " << "♙" << " and Black pieces look like " << "♟." << std::endl;
+	std::cout << "Game start!\n";
+	std::cout << "White pieces look like " << "♙" << " and Black pieces look like " << "♟.\n";
 }
 
 // Destructor
@@ -65,7 +65,7 @@ game::~game() = default;
 void game::print_chess_board() const
 {
 	std::ostringstream os;
-	os << std::endl << "  a b c d e f g h  " << std::endl;
+	os << std::endl << "  a b c d e f g h  \n";
 	for (int row{ 0 }; row<8; row++) {
 		os << 8-row << " ";
 		for (int col{ 0 }; col<8; col++) {
@@ -79,7 +79,7 @@ void game::print_chess_board() const
 		}
 		os << " " << 8-row << std::endl;
 	}
-	os << "  a b c d e f g h   " << std::endl;
+	os << "  a b c d e f g h   \n";
 	std::cout << os.str();
 	os.str(""); // Clear string stream
 }
@@ -88,7 +88,7 @@ void game::print_chess_board() const
 void game::move_piece(const position& init_pos, const position& final_pos)
 {
 	if (!chess_board.occupied(init_pos)) {
-		std::cerr << "Initial position not occupied by piece" << std::endl;
+		std::cerr << "Initial position not occupied by piece\n";
 		throw std::invalid_argument("Initial position not occupied by piece");
 	}
 	chess_board.place_piece(final_pos, chess_board.get_piece(init_pos));
@@ -140,7 +140,7 @@ void game::handle_move()
 				};
 				if (can_castle_king_side && final_pos==position{ std::pair<int, int>{ row, 6 }}) {
 					// Player just king-side castled
-					std::cout << current_player << " King King-side castles." << std::endl;
+					std::cout << current_player << " King King-side castles.\n";
 					move_piece(init_pos, final_pos);
 					// Move the rook to correct position
 					const position rook_init_pos{ std::pair<int, int>{ row, 7 }};
@@ -152,7 +152,7 @@ void game::handle_move()
 				}
 				else if (can_castle_king_side && final_pos==position{ std::pair<int, int>{ row, 2 }}) {
 					// Player just queen side castled
-					std::cout << current_player << " King Queen-side castles." << std::endl;
+					std::cout << current_player << " King Queen-side castles.\n";
 					move_piece(init_pos, final_pos);
 					const position rook_init_pos{ std::pair<int, int>{ row, 0 }};
 					const position rook_final_pos{ std::pair<int, int>{ row, 3 }};
@@ -165,16 +165,16 @@ void game::handle_move()
 			// Stop loop if the move input by the user is valid
 			asking_for_move = !(move_valid && owns_piece);
 			if (asking_for_move) {
-				std::cerr << "Invalid move, try again." << std::endl;
+				std::cerr << "Invalid move, try again.\n";
 			}
 		}
 		catch (std::invalid_argument& exception) {
-			std::cerr << "Invalid input, try again." << std::endl;
+			std::cerr << "Invalid input, try again.\n";
 			std::cin.clear();
 			std::cin.ignore();
 		}
 		catch (std::out_of_range& exception) {
-			std::cerr << "Invalid input, try again." << std::endl;
+			std::cerr << "Invalid input, try again.\n";
 			std::cin.clear();
 			std::cin.ignore();
 		}
@@ -325,7 +325,7 @@ void game::check_for_pawn_promotion()
 		}
 	}
 	if (can_promote_pawn) {
-		std::cout << "Can promote pawn!" << std::endl;
+		std::cout << "Can promote pawn!\n";
 		bool asking_for_piece{ true };
 		while (asking_for_piece) {
 			try {
@@ -357,7 +357,7 @@ void game::check_for_pawn_promotion()
 				asking_for_piece = false;
 			}
 			catch (std::invalid_argument& exception) {
-				std::cerr << "Invalid input, try again." << std::endl;
+				std::cerr << "Invalid input, try again.\n";
 				std::cin.clear();
 				std::cin.ignore();
 			}
@@ -371,7 +371,7 @@ void game::loop()
 	while (game_active) {
 		// Display chess board and game information
 		print_chess_board();
-		std::cout << current_player << "'s turn to play." << std::endl;
+		std::cout << current_player << "'s turn to play.\n";
 		// Find the location of the current player's king
 		position king_pos{ chess_board.find_king(current_player) };
 		// See if the player's king is under attack and count number of legal moves to determine checkmate
@@ -381,18 +381,18 @@ void game::loop()
 		// Check for castling
 		std::tie(can_castle_king_side, can_castle_queen_side) = can_castle(king_pos);
 		if (can_castle_king_side) {
-			std::cout << "King-side castle possible!" << std::endl;
+			std::cout << "King-side castle possible!\n";
 		}
 		if (can_castle_queen_side) {
-			std::cout << "Queen-side castle possible!" << std::endl;
+			std::cout << "Queen-side castle possible!\n";
 		}
 		if (number_of_moves==0) {
-			std::cout << "Checkmate! " << next_player << " wins." << std::endl;
+			std::cout << "Checkmate! " << next_player << " wins.\n";
 			game_active = false;
 		}
 		else {
 			if (in_check) {
-				std::cout << "Check! " << next_player << " is attacking " << current_player << "'s king." << std::endl;
+				std::cout << "Check! " << next_player << " is attacking " << current_player << "'s king.\n";
 			}
 			// Moves exist! Ask for player input.
 			handle_move();
@@ -403,5 +403,5 @@ void game::loop()
 			++next_player;
 		}
 	}
-	std::cout << "Game over." << std::endl;
+	std::cout << "Game over.\n";
 }
