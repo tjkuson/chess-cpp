@@ -7,7 +7,7 @@
 
 int main()
 {
-    chess::game g1;
-    g1.loop();
-    return 0;
+	chess::game g1;
+	g1.loop();
+	return 0;
 }

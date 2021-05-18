@@ -6,14 +6,12 @@
 #include <sstream>
 
 namespace chess {
-    enum class colour
-    {
-        white,
-        black
-    };
-    colour& operator++(colour& col);
-    std::ostream &operator<<(std::ostream &os, const colour &c);
+	enum class colour {
+		white,
+		black
+	};
+	void operator++();
+	std::ostream& operator<<(std::ostream& os, const colour& c);
 }
-
 
 #endif //COLOUR_H

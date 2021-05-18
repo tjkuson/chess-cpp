@@ -6,12 +6,11 @@
 #include "piece.h"
 
 namespace chess {
-    class queen : public piece
-    {
-    public:
-        queen(colour init_colour, const position& init_position);
-        void load_possible_moves(const board &chess_board) override;
-    };
+	class queen : public piece {
+	public:
+		queen(colour init_colour, const position& init_position);
+		void load_possible_moves(const board& chess_board) override;
+	};
 }
 
 #endif //QUEEN_H
