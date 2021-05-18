@@ -41,7 +41,10 @@ $ ./../bin/main.out
 * Substantial input/output interface, namely reading and writing to storage
 
 ## Project status
-Project is in progress.
+Project is in progress. Working on:
+* Using a one-dimensional vector represent squares
+* Move castling logic to King class from Game class
+* Move pawn-finding function to Board class from Game class
 
 ## License
 This project is open source and available under the [GPLv3](LICENSE).
