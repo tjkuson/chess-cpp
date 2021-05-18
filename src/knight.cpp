@@ -9,17 +9,17 @@
 using namespace chess;
 
 // Parameterised constructor
-knight::knight(const colour init_colour, const position& init_pos)
-		:piece{ init_colour, init_pos }
+Knight::Knight(const Colour init_colour, const Position& init_pos)
+		:Piece{ init_colour, init_pos }
 {
-	piece_icon = (piece_colour==colour::white) ? "♘" : "♞";
+	piece_icon = (piece_colour==Colour::white) ? "♘" : "♞";
 }
 
 // Find all possible "L-shaped" moves, not considering king check
-void knight::load_possible_moves(const board& chess_board)
+void Knight::load_possible_moves(const Board& chess_board)
 {
 	possible_moves.clear();
-	const std::vector<position> knight_moves{
+	const std::vector<Position> knight_moves{
 			// Eight L-shaped moves
 			piece_pos.get_offset(2, -1),
 			piece_pos.get_offset(2, 1),

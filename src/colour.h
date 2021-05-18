@@ -4,18 +4,18 @@
 
 // colour.h
 
-#ifndef COLOUR_H
-#define COLOUR_H
+#ifndef CHESS_CLI_COLOUR_H
+#define CHESS_CLI_COLOUR_H
 
 #include <sstream>
 
 namespace chess {
-	enum class colour {
+	enum class Colour {
 		white,
 		black
 	};
-	colour& operator++(colour& c);
-	std::ostream& operator<<(std::ostream& os, const colour& c);
+	auto operator++(Colour& c) -> Colour&;
+	auto operator<<(std::ostream& os, const Colour& c) -> std::ostream&;
 }
 
-#endif //COLOUR_H
+#endif //CHESS_CLI_COLOUR_H

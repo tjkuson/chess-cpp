@@ -4,8 +4,8 @@
 
 // board.h
 
-#ifndef BOARD_H
-#define BOARD_H
+#ifndef CHESS_CLI_BOARD_H
+#define CHESS_CLI_BOARD_H
 
 #include "main.h"
 #include "position.h"
@@ -15,24 +15,24 @@
 namespace chess {
 	// Forward declare piece class to resolve circular dependency \
     This allows the board class to store piece class pointers before piece class has been defined
-	class piece;
+	class Piece;
 
-	class board {
+	class Board {
 	private:
 		const std::pair<int, int> dimensions; // row, col
-		std::vector<std::vector<std::shared_ptr<piece>>> squares;
+		std::vector<std::vector<std::shared_ptr<Piece>>> squares;
 	public:
 		// Prototype constructor and destructor
-		board();
-		~board();
+		Board();
+		~Board();
 		// Prototype functions
-		[[nodiscard]] bool in_range(const position& pos) const;
-		[[nodiscard]] bool occupied(const position& pos) const;
-		void place_piece(const position& pos, const std::shared_ptr<piece>& piece_ptr);
-		void place_piece_no_update(const position& pos, const std::shared_ptr<piece>& piece_ptr);
-		[[nodiscard]] std::shared_ptr<piece> get_piece(const position& pos) const;
-		[[nodiscard]] position find_king(const colour& king_colour) const;
+		[[nodiscard]] bool in_range(const Position& pos) const;
+		[[nodiscard]] bool occupied(const Position& pos) const;
+		void place_piece(const Position& pos, const std::shared_ptr<Piece>& piece_ptr);
+		void place_piece_no_update(const Position& pos, const std::shared_ptr<Piece>& piece_ptr);
+		[[nodiscard]] std::shared_ptr<Piece> get_piece(const Position& pos) const;
+		[[nodiscard]] Position find_king(const Colour& king_colour) const;
 	};
 }
 
-#endif //BOARD_H
+#endif //CHESS_CLI_BOARD_H

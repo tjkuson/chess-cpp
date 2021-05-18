@@ -10,16 +10,16 @@
 namespace chess {
 	// Overload ++ operator such that ++white == black, and ++black == white
 	// Usage: to increment the turns i.e. "++current_turn"
-	colour& operator++(colour& c)
+	auto operator++(Colour& c) -> Colour&
 	{
-		c = (c==colour::black) ? colour::white : colour::black;
+		c = (c==Colour::black) ? Colour::white : Colour::black;
 		return c;
 	}
 	// Overload << operator so that the current turn can be printed to string stream
-	std::ostream& operator<<(std::ostream& os, const colour& c)
+	auto operator<<(std::ostream& os, const Colour& c) -> std::ostream&
 	{
-		std::string return_string{ c==colour::white ? "White" : "Black" };
+		std::string return_string{ c==Colour::white ? "White" : "Black", std::allocator<char>() };
 		os << return_string;
 		return os;
 	}
-}
+}  // namespace chess

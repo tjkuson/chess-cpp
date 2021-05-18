@@ -4,8 +4,8 @@
 
 // game.h
 
-#ifndef GAME_H
-#define GAME_H
+#ifndef CHESS_CLI_GAME_H
+#define CHESS_CLI_GAME_H
 
 #include <iostream>
 
@@ -20,31 +20,31 @@
 #include "knight.h"
 
 namespace chess {
-	class game {
+	class Game {
 	private:
-		board chess_board;
-		colour current_player{ colour::white };
-		colour next_player{ colour::black };
-		bool game_active{ true };
-		bool white_castled{ false };
-		bool black_castled{ false };
-		bool can_castle_king_side{ false };
-		bool can_castle_queen_side{ false };
+		Board chess_board;
+		Colour current_player;
+		Colour next_player;
+		bool game_active;
+		bool white_castled;
+		bool black_castled;
+		bool can_castle_king_side;
+		bool can_castle_queen_side;
 	public:
 		// Prototype constructor and destructor
-		game();
-		~game();
+		Game();
+		~Game();
 		// Prototype functions
 		void print_chess_board() const;
-		void move_piece(const position& init_pos, const position& final_pos);
+		void move_piece(const Position& init_pos, const Position& final_pos);
 		void handle_move();
-		[[nodiscard]] bool enemy_can_capture(const position& test_pos) const;
+		[[nodiscard]] auto enemy_can_capture(const Position& test_pos) const -> bool;
 		void generate_moves() const;
-		[[nodiscard]] int num_of_legal_moves() const;
-		[[nodiscard]] std::pair<bool, bool> can_castle(const position& king_pos) const;
+		[[nodiscard]] auto num_of_legal_moves() const -> int;
+		[[nodiscard]] auto can_castle(const Position& king_pos) const -> std::pair<bool, bool>;
 		void check_for_pawn_promotion();
 		void loop();
 	};
-}
+}  // namespace chess
 
-#endif //GAME_H
+#endif //CHESS_CLI_GAME_H

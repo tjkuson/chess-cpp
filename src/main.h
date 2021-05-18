@@ -4,7 +4,7 @@
 
 // main.h
 
-#ifndef MAIN_H
-#define MAIN_H
+#ifndef CHESS_CLI_MAIN_H
+#define CHESS_CLI_MAIN_H
 
-#endif //MAIN_H
+#endif //CHESS_CLI_MAIN_H

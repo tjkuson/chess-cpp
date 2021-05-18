@@ -9,16 +9,16 @@
 using namespace chess;
 
 // Default constructor
-position::position()
+Position::Position()
 		:position_value{ 0, 0 } { }
 
 // Parameterised integer pair constructor
-position::position(const std::pair<int, int> init_pos)
+Position::Position(const std::pair<int, int> init_pos)
 		:position_value{ init_pos } { }
 
 // Parameterised string pair constructor
 // Makes code neater if string conversion occurs in position class constructor
-position::position(const std::pair<std::string, std::string>& init_pos)
+Position::Position(const std::pair<std::string, std::string>& init_pos)
 		:position_value{ [&]() {
   // Algebraic notation i.e. "xN" e.g. "e3"
   if (init_pos.first.length()!=1 || init_pos.second.length()!=1) {
@@ -35,28 +35,29 @@ position::position(const std::pair<std::string, std::string>& init_pos)
 		  { "g", 6 },
 		  { "h", 7 }
   };
+  // std::allocator<std::pair<std::string, int>>()
   const int col{ col_map.at(init_pos.first) }; // This will throw std::out_of_range on conversion fail
   return std::pair<int, int>{ row, col };
 }() } { }
 
 // Default destructor
-position::~position() = default;
+Position::~Position() = default;
 
 // Return position
-std::pair<int, int> position::get_position() const
+auto Position::get_position() const -> std::pair<int, int>
 {
 	return position_value;
 }
 
 // Return position, with offset
-position position::get_offset(int row_offset, int col_offset) const
+auto Position::get_offset(int row_offset, int col_offset) const -> Position
 {
 	std::pair<int, int> position_with_offset{ position_value.first+row_offset, position_value.second+col_offset };
-	return position{ position_with_offset };
+	return Position{ position_with_offset };
 }
 
 // Return true of positions point to same location
-bool position::operator==(const position& rhs) const
+auto Position::operator==(const Position& rhs) const -> bool
 {
 	return rhs.get_position()==position_value;
 }

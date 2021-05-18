@@ -4,17 +4,17 @@
 
 // knight.h
 
-#ifndef KNIGHT_H
-#define KNIGHT_H
+#ifndef CHESS_CLI_KNIGHT_H
+#define CHESS_CLI_KNIGHT_H
 
 #include "piece.h"
 
 namespace chess {
-	class knight : public piece {
+	class Knight : public Piece {
 	public:
-		knight(colour init_colour, const position& init_pos);
-		void load_possible_moves(const board& chess_board) override;
+		Knight(Colour init_colour, const Position& init_pos);
+		void load_possible_moves(const Board& chess_board) override;
 	};
 }
 
-#endif //KNIGHT_H
+#endif //CHESS_CLI_KNIGHT_H

@@ -2,21 +2,17 @@
 // This file is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
 
-//
-// Created by tjk on 02/05/2021.
-//
-
-#ifndef KING_H
-#define KING_H
+#ifndef CHESS_CLI_KING_H
+#define CHESS_CLI_KING_H
 
 #include "piece.h"
 
 namespace chess {
-	class king : public piece {
+	class King : public Piece {
 	public:
-		king(colour init_colour, const position& init_pos);
-		void load_possible_moves(const board& chess_board) override;
+		King(Colour init_colour, const Position& init_pos);
+		void load_possible_moves(const Board& chess_board) override;
 	};
 }
 
-#endif //KING_H
+#endif //CHESS_CLI_KING_H

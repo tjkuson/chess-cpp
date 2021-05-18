@@ -4,17 +4,17 @@
 
 // bishop.h
 
-#ifndef BISHOP_H
-#define BISHOP_H
+#ifndef CHESS_CLI_BISHOP_H
+#define CHESS_CLI_BISHOP_H
 
 #include "piece.h"
 
 namespace chess {
-	class bishop : public piece {
+	class Bishop : public Piece {
 	public:
-		bishop(colour init_colour, const position& init_pos);
-		void load_possible_moves(const board& chess_board) override;
+		Bishop(Colour init_colour, const Position& init_pos);
+		void load_possible_moves(const Board& chess_board) override;
 	};
 }
 
-#endif //BISHOP_H
+#endif //CHESS_CLI_BISHOP_H

@@ -4,17 +4,17 @@
 
 // rook.h
 
-#ifndef ROOK_H
-#define ROOK_H
+#ifndef CHESS_CLI_ROOK_H
+#define CHESS_CLI_ROOK_H
 
 #include "piece.h"
 
 namespace chess {
-	class rook : public piece {
+	class Rook : public Piece {
 	public:
-		rook(colour init_colour, const position& init_pos);
-		void load_possible_moves(const board& chess_board) override;
+		Rook(Colour init_colour, const Position& init_pos);
+		void load_possible_moves(const Board& chess_board) override;
 	};
 }
 
-#endif //ROOK_H
+#endif //CHESS_CLI_ROOK_H

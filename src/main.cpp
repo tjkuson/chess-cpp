@@ -9,9 +9,9 @@
 // Nasty compile command \
 // g++ main.cpp game.cpp bishop.cpp board.cpp king.cpp knight.cpp pawn.cpp piece.cpp position.cpp queen.cpp rook.cpp colour.cpp -o ../bin/main.out
 
-int main()
+auto main() -> int
 {
-	chess::game g1;
-	g1.loop();
+	chess::Game g_1;
+	g_1.loop();
 	return 0;
 }

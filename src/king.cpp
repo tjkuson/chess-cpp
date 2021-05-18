@@ -9,17 +9,17 @@
 using namespace chess;
 
 // Parameterised constructor
-king::king(const colour init_colour, const position& init_pos)
-		:piece{ init_colour, init_pos }
+King::King(const Colour init_colour, const Position& init_pos)
+		:Piece{ init_colour, init_pos }
 {
-	piece_icon = (piece_colour==colour::white) ? "♔" : "♚";
+	piece_icon = piece_colour==Colour::white ? "♔" : "♚";
 }
 
 // Find all possible one-step moves, not considering king check
-void king::load_possible_moves(const board& chess_board)
+void King::load_possible_moves(const Board& chess_board)
 {
 	possible_moves.clear();
-	const std::vector<position> king_moves{
+	const std::vector<Position> king_moves{
 			// Eight directions the king can move
 			piece_pos.get_offset(1, 1),
 			piece_pos.get_offset(1, 0),
