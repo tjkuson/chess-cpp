@@ -7,15 +7,15 @@
 using namespace chess;
 
 Game::Game()
-		:current_player{ Colour::white }, next_player{ Colour::black }, chess_board(), game_active{ true },
-		 white_castled{ false }, black_castled{ false }, can_castle_king_side{ false },
+		:rows{ 8 }, cols{ 8 }, current_player{ Colour::white }, next_player{ Colour::black }, chess_board(8, 8),
+		 game_active{ true }, white_castled{ false }, black_castled{ false }, can_castle_king_side{ false },
 		 can_castle_queen_side{ false }
 {
 	// Initialise pieces on chess board
 	Position piece_pos;
 	std::shared_ptr<Piece> piece_ptr;
 	// White and black pawns
-	for (int col{ 0 }; col<8; col++) {
+	for (int col{ 0 }; col<cols; col++) {
 		piece_pos = Position{ std::pair<int, int>{ 6, col }};
 		piece_ptr = std::make_shared<Pawn>(Colour::white, piece_pos);
 		chess_board.place_piece(piece_pos, piece_ptr);
@@ -24,7 +24,7 @@ Game::Game()
 		chess_board.place_piece(piece_pos, piece_ptr);
 	}
 	// Black and white rooks, knights, and bishops
-	for (int row{ 0 }; row<8; row += 7) {
+	for (int row{ 0 }; row<rows; row += rows-1) {
 		Colour piece_colour;
 		piece_colour = (row==0) ? Colour::black : Colour::white;
 		piece_pos = Position{ std::pair<int, int>{ row, 0 }};
@@ -47,7 +47,7 @@ Game::Game()
 		chess_board.place_piece(piece_pos, piece_ptr);
 	}
 	// White and black king and queen
-	for (int row{ 0 }; row<8; row += 7) {
+	for (int row{ 0 }; row<rows; row += rows-1) {
 		Colour piece_colour{ row==0 ? Colour::black : Colour::white };
 		piece_pos = Position{ std::pair<int, int>{ row, 4 }};
 		piece_ptr = std::make_shared<King>(piece_colour, piece_pos);
@@ -68,9 +68,9 @@ void Game::print_chess_board() const
 {
 	std::ostringstream os;
 	os << std::endl << "  a b c d e f g h  \n";
-	for (int row{ 0 }; row<8; row++) {
-		os << 8-row << " ";
-		for (int col{ 0 }; col<8; col++) {
+	for (int row{ 0 }; row<rows; row++) {
+		os << rows-row << " ";
+		for (int col{ 0 }; col<cols; col++) {
 			std::string icon{ "·", std::allocator<char>() };
 			const Position position_visiting{ std::pair<int, int>{ row, col }};
 			if (chess_board.occupied(position_visiting)) {
@@ -79,11 +79,11 @@ void Game::print_chess_board() const
 			}
 			os << icon << " ";
 		}
-		os << " " << 8-row << std::endl;
+		os << " " << rows-row << std::endl;
 	}
 	os << "  a b c d e f g h   \n";
 	std::cout << os.str();
-	os.str("", std::allocator<char>()); // Clear string stream
+	os.str(""); // Clear string stream
 }
 
 // Move piece pointers around
@@ -188,8 +188,8 @@ void Game::handle_move()
 // Check if the enemy can capture position
 auto Game::enemy_can_capture(const Position& test_pos) const -> bool
 {
-	for (int row{ 0 }; row<8; row++) {
-		for (int col{ 0 }; col<8; col++) {
+	for (int row{ 0 }; row<rows; row++) {
+		for (int col{ 0 }; col<cols; col++) {
 			const Position visiting_pos{ std::pair<int, int>{ row, col }};
 			if (chess_board.occupied(visiting_pos)) {
 				// Generate the legal moves for the piece being visited
@@ -207,8 +207,8 @@ auto Game::enemy_can_capture(const Position& test_pos) const -> bool
 // Generate the moves of all the pieces on the board
 void Game::generate_moves() const
 {
-	for (int row{ 0 }; row<8; row++) {
-		for (int col{ 0 }; col<8; col++) {
+	for (int row{ 0 }; row<rows; row++) {
+		for (int col{ 0 }; col<cols; col++) {
 			const Position visiting_pos{ std::pair<int, int>{ row, col }};
 			if (chess_board.occupied(visiting_pos)) {
 				// Generate the legal moves for the piece being visited
@@ -224,8 +224,8 @@ void Game::generate_moves() const
 auto Game::num_of_legal_moves() const -> int
 {
 	int count{ 0 };
-	for (int row{ 0 }; row<8; row++) {
-		for (int col{ 0 }; col<8; col++) {
+	for (int row{ 0 }; row<rows; row++) {
+		for (int col{ 0 }; col<cols; col++) {
 			const Position visiting_pos{ std::pair<int, int>{ row, col }};
 			if (chess_board.occupied(visiting_pos)) {
 				const std::shared_ptr<Piece> piece_pos{ chess_board.get_piece(visiting_pos) };
@@ -264,7 +264,7 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
 					}
 				}
 				else if (chess_board.get_piece(visiting_pos)->get_icon()==castle_icon
-						&& visiting_pos.get_position().second==7) {
+						&& visiting_pos.get_position().second==cols-1) {
 					// If not empty, it could be our rook. If so, our path is clear!
 					can_king_side_castle = true;
 				}
@@ -314,8 +314,8 @@ void Game::check_for_pawn_promotion()
 	// Check if there is a pawn that can be promoted
 	bool can_promote_pawn{ false };
 	Position promotable_pawn_pos;
-	for (int row{ 0 }; row<8 && !can_promote_pawn; row += 7) {
-		for (int col{ 0 }; col<8 && !can_promote_pawn; ++col) {
+	for (int row{ 0 }; row<rows && !can_promote_pawn; row += rows-1) {
+		for (int col{ 0 }; col<cols && !can_promote_pawn; ++col) {
 			const Position visiting_pos{ std::pair<int, int>{ row, col }};
 			if (chess_board.occupied(visiting_pos)) {
 				const std::string piece_icon{ chess_board.get_piece(visiting_pos)->get_icon() };

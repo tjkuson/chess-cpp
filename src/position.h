@@ -26,6 +26,7 @@ namespace chess {
 		[[nodiscard]] auto get_position() const -> std::pair<int, int>;
 		[[nodiscard]] auto get_offset(int row_offset, int col_offset) const -> Position;
 		[[nodiscard]] auto operator==(const Position& rhs) const -> bool;
+		[[nodiscard]] auto get_index(std::pair<int, int> pair) const -> int;
 	};
 }  // namespace chess
 

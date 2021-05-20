@@ -61,3 +61,8 @@ auto Position::operator==(const Position& rhs) const -> bool
 {
 	return rhs.get_position()==position_value;
 }
+
+auto Position::get_index(const std::pair<int, int> dimensions) const -> int
+{
+	return dimensions.second*position_value.first+position_value.second;
+}

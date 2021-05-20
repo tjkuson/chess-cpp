@@ -25,6 +25,8 @@ namespace chess {
 		Board chess_board;
 		Colour current_player;
 		Colour next_player;
+		const int rows;
+		const int cols;
 		bool game_active;
 		bool white_castled;
 		bool black_castled;

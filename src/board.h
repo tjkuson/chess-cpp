@@ -20,10 +20,10 @@ namespace chess {
 	class Board {
 	private:
 		const std::pair<int, int> dimensions; // row, col
-		std::vector<std::vector<std::shared_ptr<Piece>>> squares;
+		std::vector<std::shared_ptr<Piece>> squares;
 	public:
 		// Prototype constructor and destructor
-		Board();
+		Board(int rows, int cols);
 		~Board();
 		// Prototype functions
 		[[nodiscard]] bool in_range(const Position& pos) const;
