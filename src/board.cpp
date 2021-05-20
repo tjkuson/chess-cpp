@@ -14,7 +14,7 @@ Board::Board(int rows, int cols)
 		:dimensions{ rows, cols }
 {
 	squares.resize(rows*cols);
-	std::cout<<"Rows: "<<rows<<" Cols: "<<cols<<"\n";
+	std::cout << "Rows: " << rows << " Cols: " << cols << "\n";
 }
 
 // Board destructor
