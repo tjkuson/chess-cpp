@@ -42,7 +42,6 @@ $ ./../bin/main.out
 
 ## Project status
 Project is in progress. Working on:
-* Using a one-dimensional vector represent squares
 * Move castling logic to King class from Game class
 * Move pawn-finding function to Board class from Game class
 
