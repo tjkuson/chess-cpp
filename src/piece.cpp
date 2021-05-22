@@ -1,8 +1,6 @@
 // Copyright (C) 2021, Tom Kuson.
-// This file is a part of Chess CLI which is released under the GPLv3.
+// This file piece.cpp is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
-
-// piece.cpp
 
 #include "piece.h"
 
@@ -50,7 +48,7 @@ auto Piece::possible_move(const Position& move) const -> bool
 auto Piece::attacking_enemy(const Position& visiting_pos, const Board& game_board) const -> bool
 {
 	// Return false if no piece in square
-	if (!game_board.occupied(visiting_pos) || !game_board.in_range(visiting_pos)) {
+	if (not game_board.occupied(visiting_pos) or not game_board.in_range(visiting_pos)) {
 		return false;
 	}
 	// Return false if piece is of same colour

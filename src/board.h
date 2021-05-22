@@ -1,8 +1,6 @@
 // Copyright (C) 2021, Tom Kuson.
-// This file is a part of Chess CLI which is released under the GPLv3.
+// This file board.h is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
-
-// board.h
 
 #ifndef CHESS_CLI_BOARD_H
 #define CHESS_CLI_BOARD_H
@@ -32,6 +30,7 @@ namespace chess {
 		void place_piece_no_update(const Position& pos, const std::shared_ptr<Piece>& piece_ptr);
 		[[nodiscard]] std::shared_ptr<Piece> get_piece(const Position& pos) const;
 		[[nodiscard]] Position find_king(const Colour& king_colour) const;
+		[[nodiscard]] std::pair<bool, Position> promotable_pawn(const Colour& pawn_colour) const;
 	};
 }
 

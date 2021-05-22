@@ -1,8 +1,6 @@
 // Copyright (C) 2021, Tom Kuson.
-// This file is a part of Chess CLI which is released under the GPLv3.
+// This file game.h is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
-
-// game.h
 
 #ifndef CHESS_CLI_GAME_H
 #define CHESS_CLI_GAME_H
@@ -25,8 +23,8 @@ namespace chess {
 		Board chess_board;
 		Colour current_player;
 		Colour next_player;
-		const int rows;
-		const int cols;
+		static constexpr int rows{ 8 };
+		static constexpr int cols{ 8 };
 		bool game_active;
 		bool white_castled;
 		bool black_castled;

@@ -1,8 +1,6 @@
 // Copyright (C) 2021, Tom Kuson.
-// This file is a part of Chess CLI which is released under the GPLv3.
+// This file position.h is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
-
-// position.h
 
 #ifndef CHESS_CLI_POSITION_H
 #define CHESS_CLI_POSITION_H
@@ -16,6 +14,7 @@ namespace chess {
 	class Position {
 	private:
 		std::pair<int, int> position_value;
+		static const std::map<std::string, int> col_map; // constexpr std::map not possible for some reason
 	public:
 		// Prototype constructors and destructor
 		Position();
@@ -23,10 +22,10 @@ namespace chess {
 		explicit Position(const std::pair<std::string, std::string>& init_pos);
 		~Position();
 		// Prototype functions
-		[[nodiscard]] auto get_position() const -> std::pair<int, int>;
-		[[nodiscard]] auto get_offset(int row_offset, int col_offset) const -> Position;
-		[[nodiscard]] auto operator==(const Position& rhs) const -> bool;
-		[[nodiscard]] auto get_index(std::pair<int, int> pair) const -> int;
+		[[nodiscard]] auto get_position() const noexcept -> std::pair<int, int>;
+		[[nodiscard]] auto get_offset(int row_offset, int col_offset) const noexcept -> Position;
+		[[nodiscard]] auto operator==(const Position& rhs) const noexcept -> bool;
+		[[nodiscard]] auto get_index(std::pair<int, int> pair) const noexcept -> int;
 	};
 }  // namespace chess
 

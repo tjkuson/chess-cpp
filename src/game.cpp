@@ -1,5 +1,5 @@
 // Copyright (C) 2021, Tom Kuson.
-// This file is a part of Chess CLI which is released under the GPLv3.
+// This file game.cpp is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
 
 #include "game.h"
@@ -7,7 +7,7 @@
 using namespace chess;
 
 Game::Game()
-		:rows{ 8 }, cols{ 8 }, current_player{ Colour::white }, next_player{ Colour::black }, chess_board(8, 8),
+		:current_player{ Colour::white }, next_player{ Colour::black }, chess_board(rows, cols),
 		 game_active{ true }, white_castled{ false }, black_castled{ false }, can_castle_king_side{ false },
 		 can_castle_queen_side{ false }
 {
@@ -89,7 +89,7 @@ void Game::print_chess_board() const
 // Move piece pointers around
 void Game::move_piece(const Position& init_pos, const Position& final_pos)
 {
-	if (!chess_board.occupied(init_pos)) {
+	if (not chess_board.occupied(init_pos)) {
 		std::cerr << "Initial position not occupied by piece\n";
 		throw std::invalid_argument("Initial position not occupied by piece");
 	}
@@ -129,8 +129,8 @@ void Game::handle_move()
 			const bool owns_piece{ chess_board.get_piece(init_pos)->get_colour()==current_player };
 			// Player could have just castled if they moved a king, if they did we have to move things around more carefully
 			// Check if the player can castle, and if they just picked up their own king
-			if (owns_piece && (can_castle_king_side || can_castle_queen_side)
-					&& chess_board.find_king(current_player)==init_pos) {
+			if (owns_piece and (can_castle_king_side or can_castle_queen_side)
+					and chess_board.find_king(current_player)==init_pos) {
 				const int row{ current_player==Colour::white ? 7 : 0 };
 				const auto disable_castling = [&]() {
 				  if (current_player==Colour::white) {
@@ -140,7 +140,7 @@ void Game::handle_move()
 					  black_castled = true;
 				  }
 				};
-				if (can_castle_king_side && final_pos==Position{ std::pair<int, int>{ row, 6 }}) {
+				if (can_castle_king_side and final_pos==Position{ std::pair<int, int>{ row, 6 }}) {
 					// Player just king-side castled
 					std::cout << current_player << " King King-side castles.\n";
 					move_piece(init_pos, final_pos);
@@ -152,7 +152,7 @@ void Game::handle_move()
 					disable_castling();
 					return;
 				}
-				else if (can_castle_king_side && final_pos==Position{ std::pair<int, int>{ row, 2 }}) {
+				else if (can_castle_king_side and final_pos==Position{ std::pair<int, int>{ row, 2 }}) {
 					// Player just queen side castled
 					std::cout << current_player << " King Queen-side castles.\n";
 					move_piece(init_pos, final_pos);
@@ -165,7 +165,7 @@ void Game::handle_move()
 				}
 			}
 			// Stop loop if the move input by the user is valid
-			asking_for_move = !(move_valid && owns_piece);
+			asking_for_move = not(move_valid and owns_piece);
 			if (asking_for_move) {
 				std::cerr << "Invalid move, try again.\n";
 			}
@@ -195,7 +195,7 @@ auto Game::enemy_can_capture(const Position& test_pos) const -> bool
 				// Generate the legal moves for the piece being visited
 				const std::shared_ptr<Piece> piece_ptr{ chess_board.get_piece(visiting_pos) };
 				piece_ptr->load_possible_moves(chess_board);
-				if (piece_ptr->possible_move(test_pos) && piece_ptr->get_colour()!=current_player) {
+				if (piece_ptr->possible_move(test_pos) and piece_ptr->get_colour()!=current_player) {
 					return true;
 				}
 			}
@@ -240,13 +240,13 @@ auto Game::num_of_legal_moves() const -> int
 
 auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
 {
-	const bool has_castling_rights{ current_player==Colour::white ? !white_castled : !black_castled };
+	const bool has_castling_rights{ current_player==Colour::white ? not white_castled : not black_castled };
 	const bool in_position{ (king_pos==Position(std::pair<int, int>{ 0, 4 })
-			|| king_pos==Position(std::pair<int, int>{ 7, 4 })) };
+			or king_pos==Position(std::pair<int, int>{ 7, 4 })) };
 	const std::string castle_icon{ current_player==Colour::white ? "♖" : "♜", std::allocator<char>() };
 	bool can_king_side_castle{ false };
 	bool can_queen_side_castle{ false };
-	if (has_castling_rights && in_position) {
+	if (has_castling_rights and in_position) {
 		// Check king-side
 		bool searching{ true };
 		int offset{ 0 };
@@ -254,8 +254,8 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
 			++offset;
 			const Position visiting_pos{ king_pos.get_offset(0, offset) };
 			if (chess_board.in_range(visiting_pos)) {
-				if (!chess_board.occupied(visiting_pos)) {
-					if (!enemy_can_capture(visiting_pos)) {
+				if (not chess_board.occupied(visiting_pos)) {
+					if (not enemy_can_capture(visiting_pos)) {
 						// If safe and empty, keep searching
 						continue;
 					}
@@ -264,7 +264,7 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
 					}
 				}
 				else if (chess_board.get_piece(visiting_pos)->get_icon()==castle_icon
-						&& visiting_pos.get_position().second==cols-1) {
+						and visiting_pos.get_position().second==cols-1) {
 					// If not empty, it could be our rook. If so, our path is clear!
 					can_king_side_castle = true;
 				}
@@ -283,8 +283,8 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
 			--offset;
 			const Position visiting_pos{ king_pos.get_offset(0, offset) };
 			if (chess_board.in_range(visiting_pos)) {
-				if (!chess_board.occupied(visiting_pos)) {
-					if (!enemy_can_capture(visiting_pos)) {
+				if (not chess_board.occupied(visiting_pos)) {
+					if (not enemy_can_capture(visiting_pos)) {
 						// If safe and empty, keep searching
 						continue;
 					}
@@ -293,7 +293,7 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
 					}
 				}
 				else if (chess_board.get_piece(visiting_pos)->get_icon()==castle_icon
-						&& visiting_pos.get_position().second==0) {
+						and visiting_pos.get_position().second==0) {
 					// If not empty, it could be our rook. If so, our path is clear!
 					can_queen_side_castle = true;
 				}
@@ -314,18 +314,7 @@ void Game::check_for_pawn_promotion()
 	// Check if there is a pawn that can be promoted
 	bool can_promote_pawn{ false };
 	Position promotable_pawn_pos;
-	for (int row{ 0 }; row<rows && !can_promote_pawn; row += rows-1) {
-		for (int col{ 0 }; col<cols && !can_promote_pawn; ++col) {
-			const Position visiting_pos{ std::pair<int, int>{ row, col }};
-			if (chess_board.occupied(visiting_pos)) {
-				const std::string piece_icon{ chess_board.get_piece(visiting_pos)->get_icon() };
-				if (piece_icon=="♙" || piece_icon=="♟") {
-					can_promote_pawn = true; // Stops the loop, no more than one pawn can be promoted
-					promotable_pawn_pos = visiting_pos;
-				}
-			}
-		}
-	}
+	std::tie(can_promote_pawn, promotable_pawn_pos) = chess_board.promotable_pawn(current_player);
 	if (can_promote_pawn) {
 		std::cout << "Can promote pawn!\n";
 		bool asking_for_piece{ true };

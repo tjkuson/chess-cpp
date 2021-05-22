@@ -1,8 +1,6 @@
 // Copyright (C) 2021, Tom Kuson.
-// This file is a part of Chess CLI which is released under the GPLv3.
+// This file board.cpp is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
-
-// board.cpp
 
 #include <iostream>
 #include "board.h"
@@ -14,7 +12,6 @@ Board::Board(int rows, int cols)
 		:dimensions{ rows, cols }
 {
 	squares.resize(rows*cols);
-	std::cout << "Rows: " << rows << " Cols: " << cols << "\n";
 }
 
 // Board destructor
@@ -29,7 +26,8 @@ auto Board::in_range(const Position& pos) const -> bool
 	int row;
 	int col;
 	std::tie(row, col) = pos.get_position();
-	return row<dimensions.first && col<dimensions.second && row>=0 && col>=0;
+	return pos.get_position().first<dimensions.first and pos.get_position().second<dimensions.second and row>=0
+			and col>=0;
 }
 
 // Check position is occupied by piece on board
@@ -80,4 +78,21 @@ auto Board::find_king(const Colour& king_colour) const -> Position
 		}
 	}
 	throw std::out_of_range("King not found");
+}
+
+// Check if pawn can be promoted
+auto Board::promotable_pawn(const Colour& pawn_colour) const -> std::pair<bool, Position>
+{
+	const int row{ pawn_colour==Colour::white ? 0 : 7 };
+	const std::string pawn_icon{ pawn_colour==Colour::white ? "♙" : "♟" };
+	for (int col{ 0 }; col<dimensions.second; ++col) {
+		const Position visiting_pos{ std::pair<int, int>{ row, col }};
+		if (occupied(visiting_pos)) {
+			const std::string piece_icon{ get_piece(visiting_pos)->get_icon() };
+			if (piece_icon=="♙" or piece_icon=="♟") {
+				return std::pair<bool, Position>{true, visiting_pos};
+			}
+		}
+	}
+	return std::pair<bool, Position>{false, Position{}};
 }

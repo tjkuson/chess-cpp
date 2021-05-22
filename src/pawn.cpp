@@ -1,8 +1,6 @@
 // Copyright (C) 2021, Tom Kuson.
-// This file is a part of Chess CLI which is released under the GPLv3.
+// This file pawn.cpp is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
-
-// pawn.cpp
 
 #include "pawn.h"
 
@@ -22,13 +20,13 @@ void Pawn::load_possible_moves(const Board& chess_board)
 	const int direction{ piece_colour==Colour::white ? -1 : 1 };
 	const Position one_step{ piece_pos.get_offset(direction, 0) };
 	if (chess_board.in_range(one_step)) {
-		if (!chess_board.occupied(one_step)) {
+		if (not chess_board.occupied(one_step)) {
 			possible_moves.push_back(one_step);
 			int row{ piece_pos.get_position().first };
-			if ((row==6 && piece_colour==Colour::white) || (row==1 && piece_colour==Colour::black)) {
+			if ((row==6 and piece_colour==Colour::white) or (row==1 and piece_colour==Colour::black)) {
 				// Can move up by two squares if pawn has not yet moved
 				const Position two_step{ piece_pos.get_offset(2*direction, 0) };
-				if (!chess_board.occupied(two_step)) {
+				if (not chess_board.occupied(two_step)) {
 					possible_moves.push_back(two_step);
 				}
 			}

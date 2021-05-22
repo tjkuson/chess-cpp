@@ -1,8 +1,6 @@
 // Copyright (C) 2021, Tom Kuson.
-// This file is a part of Chess CLI which is released under the GPLv3.
+// This file bishop.cpp is a part of Chess CLI which is released under the GPLv3.
 // See LICENSE file in the project root or go to <https://www.gnu.org/licenses/> for full license details.
-
-// bishop.cpp
 
 #include "bishop.h"
 
@@ -25,7 +23,7 @@ void Bishop::load_possible_moves(const Board& chess_board)
 		  const Position visiting{ piece_pos.get_offset(offset*row_offset, offset*col_offset) };
 		  // Stop searching when another piece is encountered
 		  if (chess_board.in_range(visiting)) {
-			  if (!chess_board.occupied(visiting)) {
+			  if (not chess_board.occupied(visiting)) {
 				  possible_moves.push_back(visiting);
 				  continue;
 			  }
