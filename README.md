@@ -3,6 +3,8 @@ This is a cross-platform command-line chess game written in object-orientated mo
 
 Most recent release: Chess-CLI v1.0.2 (22 May 2021).
 
+![CMake](https://github.com/tjkuson/chess-cli/workflows/CMake/badge.svg)
+
 # Table of contents
 - [Setup](#setup)
 - [Game functionality](#game-functionality)
