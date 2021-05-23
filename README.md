@@ -1,4 +1,7 @@
 # Chess CLI
+
+![CMake](https://github.com/tjkuson/chess-cpp/workflows/CMake/badge.svg)
+
 This is a cross-platform command-line chess game written in object-orientated modern C++ using only the Standard Library. Its aim is to demonstrate the implementation of advanced C++ code features. Users are free to study, modify, and redistribute the source code in compliance with the GPLv3 software license. 
 
 Most recent release: Chess-CLI v1.0.2 (22 May 2021).
