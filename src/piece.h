@@ -25,7 +25,7 @@ namespace chess {
 	public:
 		// Prototype constructor and destructor
 		Piece(const Colour init_colour, const Position& init_pos);
-		virtual ~Piece();
+		virtual ~Piece() noexcept;
 		// Prototype functions
 		[[nodiscard]] std::string get_icon() const;
 		[[nodiscard]] Colour get_colour() const;

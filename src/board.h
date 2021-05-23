@@ -31,6 +31,7 @@ namespace chess {
 		[[nodiscard]] std::shared_ptr<Piece> get_piece(const Position& pos) const;
 		[[nodiscard]] Position find_king(const Colour& king_colour) const;
 		[[nodiscard]] std::pair<bool, Position> promotable_pawn(const Colour& pawn_colour) const;
+		[[nodiscard]] auto get_icon(const Position& pos) const noexcept -> std::string;
 	};
 }
 

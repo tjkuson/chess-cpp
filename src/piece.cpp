@@ -11,11 +11,7 @@ Piece::Piece(const Colour init_colour, const Position& init_pos)
 		:piece_colour{ init_colour }, piece_pos{ init_pos } { }
 
 // Default destructor
-Piece::~Piece()
-{
-	possible_moves.clear();
-	legal_moves.clear();
-}
+Piece::~Piece() = default;
 
 auto Piece::get_icon() const -> std::string
 {

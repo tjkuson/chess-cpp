@@ -74,8 +74,7 @@ void Game::print_chess_board() const
 			std::string icon{ "·", std::allocator<char>() };
 			const Position position_visiting{ std::pair<int, int>{ row, col }};
 			if (chess_board.occupied(position_visiting)) {
-				const std::shared_ptr<Piece> piece_ptr{ chess_board.get_piece(position_visiting) };
-				icon = piece_ptr->get_icon();
+				icon = chess_board.get_icon(position_visiting);
 			}
 			os << icon << " ";
 		}
@@ -120,7 +119,7 @@ void Game::handle_move()
 			const std::pair<std::string, std::string> init_pair{ move.substr(0, 1), move.substr(1, 1) };
 			const std::pair<std::string, std::string> final_pair{ move.substr(2, 1), move.substr(3, 1) };
 			init_pos = Position{ init_pair }; // Will throw exception on invalid input
-			if (chess_board.get_piece(init_pos)==nullptr) {
+			if (not chess_board.occupied(init_pos)) {
 				throw std::invalid_argument("Cannot move from empty square");
 			}
 			final_pos = Position{ final_pair }; // Will throw exception on invalid input
@@ -263,7 +262,7 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
 						searching = false;
 					}
 				}
-				else if (chess_board.get_piece(visiting_pos)->get_icon()==castle_icon
+				else if (chess_board.get_icon(visiting_pos)==castle_icon
 						and visiting_pos.get_position().second==cols-1) {
 					// If not empty, it could be our rook. If so, our path is clear!
 					can_king_side_castle = true;
@@ -292,7 +291,7 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
 						searching = false;
 					}
 				}
-				else if (chess_board.get_piece(visiting_pos)->get_icon()==castle_icon
+				else if (chess_board.get_icon(visiting_pos)==castle_icon
 						and visiting_pos.get_position().second==0) {
 					// If not empty, it could be our rook. If so, our path is clear!
 					can_queen_side_castle = true;

@@ -15,10 +15,7 @@ Board::Board(int rows, int cols)
 }
 
 // Board destructor
-Board::~Board()
-{
-	squares.clear();
-}
+Board::~Board() = default;
 
 // Check position is in range on board
 auto Board::in_range(const Position& pos) const -> bool
@@ -90,9 +87,14 @@ auto Board::promotable_pawn(const Colour& pawn_colour) const -> std::pair<bool, 
 		if (occupied(visiting_pos)) {
 			const std::string piece_icon{ get_piece(visiting_pos)->get_icon() };
 			if (piece_icon=="♙" or piece_icon=="♟") {
-				return std::pair<bool, Position>{true, visiting_pos};
+				return std::pair<bool, Position>{ true, visiting_pos };
 			}
 		}
 	}
-	return std::pair<bool, Position>{false, Position{}};
+	return std::pair<bool, Position>{ false, Position{}};
+}
+auto Board::get_icon(const Position& pos) const noexcept -> std::string
+{
+	int index{ pos.get_index(dimensions) };
+	return squares[index]->get_icon();
 }
