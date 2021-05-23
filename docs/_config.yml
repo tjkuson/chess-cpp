@@ -1,3 +1,4 @@
 theme: jekyll-theme-minimal
 title: Some title
 description: Short description
+show_downloads: true
