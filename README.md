@@ -1,5 +1,5 @@
 # Chess CLI
-This is a cross-platform command-line chess game written in object-orientated modern C++ using only the Standard Library (STL). It's aim is to demonstrate the implementation of advanced C++ code features. Users are free to study, modify, and redistribute the source code in compliance with the GPLv3 software license. 
+This is a cross-platform command-line chess game written in object-orientated modern C++ using only the Standard Library (STL). It aims to demonstrate the implementation of advanced C++ code features. Users are free to study, modify, and redistribute the source code in compliance with the GPLv3 software licence. 
 
 Most recent release: Chess-CLI beta 1.0 (18 May 2021).
 
@@ -29,7 +29,7 @@ $ ./../bin/main.out
 * Custom starting conditions
 
 ## Code features
-* Source code organisation (headers, class files, namespeaces)
+* Source code organization (headers, class files, namespaces)
 * Dynamic memory allocation (and garbage collection)
 * Smart pointers
 * Exception handling
@@ -46,5 +46,5 @@ Project is in progress. Working on:
 * Move castling logic to King class from Game class
 * Move pawn-finding function to Board class from Game class
 
-## License
+## Licence
 This project is open source and available under the [GPLv3](LICENSE).
