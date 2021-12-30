@@ -1,7 +1,9 @@
 # Chess CLI
-This is a cross-platform command-line chess game written in object-orientated modern C++ using only the Standard Library (STL). It aims to demonstrate the implementation of advanced C++ code features. Users are free to study, modify, and redistribute the source code in compliance with the GPLv3 software licence. 
+![CMake](https://github.com/tjkuson/chess-cpp/workflows/CMake/badge.svg)
 
-Most recent release: Chess-CLI beta 1.0 (18 May 2021).
+This is a cross-platform command-line chess game written in object-orientated modern C++ using only the Standard Library. It aims to demonstrate the implementation of advanced C++ code features. Users are free to study, modify, and redistribute the source code in compliance with the GPLv3 software licence. 
+
+Most recent release: Chess-CLI v1.0.2 (22 May 2021).
 
 # Table of contents
 - [Setup](#setup)
@@ -42,9 +44,9 @@ $ ./../bin/main.out
 
 ## Project status
 Project is in progress. Working on:
-* Using a one-dimensional vector represent squares
 * Move castling logic to King class from Game class
 * Move pawn-finding function to Board class from Game class
+
 
 ## Licence
 This project is open source and available under the [GPLv3](LICENSE).
