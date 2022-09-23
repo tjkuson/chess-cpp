@@ -1,7 +1,7 @@
 # Chess CLI
 
 ![CMake](https://github.com/tjkuson/chess-cpp/workflows/CMake/badge.svg)
-![Codacy](https://img.shields.io/codacy/grade/393c681a2ce34fc78d64acf745398cee)
+[![Codacy](https://img.shields.io/codacy/grade/393c681a2ce34fc78d64acf745398cee)](https://www.codacy.com/gh/tjkuson/chess-cpp/)
 
 This is a cross-platform command-line chess game written in object-orientated modern C++ using only the Standard Library. It aims to demonstrate the implementation of advanced C++ code features. Users are free to study, modify, and redistribute the source code in compliance with the GPLv3 software licence.
 
