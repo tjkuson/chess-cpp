@@ -9,7 +9,7 @@
 
 auto main() -> int
 {
-	chess::Game g_1;
-	g_1.loop();
-	return 0;
+    chess::Game g_1;
+    g_1.loop();
+    return 0;
 }

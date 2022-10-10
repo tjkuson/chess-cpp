@@ -8,12 +8,12 @@
 #include <sstream>
 
 namespace chess {
-	enum class Colour {
-		white,
-		black
-	};
-	auto operator++(Colour& c) noexcept -> Colour&;
-	auto operator<<(std::ostream& os, const Colour& c) noexcept -> std::ostream&;
+    enum class Colour {
+        white,
+        black
+    };
+    auto operator++(Colour& c) noexcept -> Colour&;
+    auto operator<<(std::ostream& os, const Colour& c) noexcept -> std::ostream&;
 }
 
 #endif //CHESS_CLI_COLOUR_H
