@@ -1,2 +1,0 @@
-# Hey there
-Some text

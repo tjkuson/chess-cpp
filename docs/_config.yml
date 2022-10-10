@@ -1,4 +1,0 @@
-theme: jekyll-theme-minimal
-title: Chess CLI
-description: Command-line chess written in object-orientated modern C++ using only the Standard Library. 
-show_downloads: true
