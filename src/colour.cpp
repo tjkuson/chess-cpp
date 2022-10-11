@@ -19,17 +19,18 @@
 namespace chess {
     // Overload ++ operator such that ++white == black, and ++black == white
     // Usage: to increment the turns, for example, "++current_turn".
-    auto operator++(Colour& c) noexcept -> Colour&
+    auto operator++(Colour& passed_colour) noexcept -> Colour&
     {
-        c = (c==Colour::black) ? Colour::white : Colour::black;
-        return c;
+        passed_colour = (passed_colour==Colour::black) ? Colour::white : Colour::black;
+        return passed_colour;
     }
     // Overload << operator so that the current turn can be printed to string stream
-    auto operator<<(std::ostream& os, const Colour& c) noexcept -> std::ostream&
+    auto operator<<(std::ostream& str_stream,
+            const Colour& passed_colour) noexcept -> std::ostream&
     {
-        std::string return_string{c==Colour::white ? "White" : "Black",
+        std::string return_string{passed_colour==Colour::white ? "White" : "Black",
                                   std::allocator<char>()};
-        os << return_string;
-        return os;
+        str_stream << return_string;
+        return str_stream;
     }
 }  // namespace chess
