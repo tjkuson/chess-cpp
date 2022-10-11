@@ -22,7 +22,9 @@ using namespace chess;
 Board::Board(int rows, int cols)
         :dimensions{rows, cols}
 {
-    squares.resize(rows*cols);
+    // Use auto to avoid multiplication result conversions to a different (non-int) type
+    auto number_of_squares = rows*cols;
+    squares.resize(number_of_squares);
 }
 
 // Board destructor
