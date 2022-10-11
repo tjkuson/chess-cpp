@@ -81,23 +81,23 @@ Game::~Game() = default;
 // Print graphical display of game board
 void Game::print_chess_board() const
 {
-    std::ostringstream os;
-    os << std::endl << "  a b c d e f g h  \n";
+    std::ostringstream str_stream;
+    str_stream << std::endl << "  a b c d e f g h  \n";
     for (int row{0}; row<rows; row++) {
-        os << rows-row << " ";
+        str_stream << rows-row << " ";
         for (int col{0}; col<cols; col++) {
             std::string icon{"·", std::allocator<char>()};
             const Position position_visiting{std::pair<int, int>{row, col}};
             if (chess_board.occupied(position_visiting)) {
                 icon = chess_board.get_icon(position_visiting);
             }
-            os << icon << " ";
+            str_stream << icon << " ";
         }
-        os << " " << rows-row << std::endl;
+        str_stream << " " << rows-row << std::endl;
     }
-    os << "  a b c d e f g h   \n";
-    std::cout << os.str();
-    os.str(""); // Clear string stream
+    str_stream << "  a b c d e f g h   \n";
+    std::cout << str_stream.str();
+    str_stream.str(""); // Clear string stream
 }
 
 // Move piece pointers around
