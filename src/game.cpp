@@ -1,5 +1,5 @@
 // Chess CLI: command-line chess
-// Copyright (c) 2022. Tom Kuson
+// Copyright (c) 2022 Tom Kuson
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -38,7 +38,8 @@ Game::Game()
     }
     // Black and white rooks, knights, and bishops
     for (int row{0}; row<rows; row += rows-1) {
-        Colour piece_colour;
+        // Row at the top of the screen is black; the bottom is white.
+        Colour piece_colour{};
         piece_colour = (row==0) ? Colour::black : Colour::white;
         piece_pos = Position{std::pair<int, int>{row, 0}};
         piece_ptr = std::make_shared<Rook>(piece_colour, piece_pos);
