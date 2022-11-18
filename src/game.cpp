@@ -22,7 +22,9 @@ Game::Game()
          chess_board(rows, cols),
          game_active{true}, white_castled{false}, black_castled{false},
          can_castle_king_side{false},
-         can_castle_queen_side{false}
+         can_castle_queen_side{false},
+         pawn_doubled_pushed_last_turn{false},
+         en_passant_col{}
 {
     // Initialise pieces on chess board
     Position piece_pos;
@@ -421,6 +423,8 @@ void Game::loop()
             handle_move();
             // Promote pawns, if possible
             check_for_pawn_promotion();
+            // Check for en passant
+            // TODO: Implement en passant
             // Next player
             ++current_player;
             ++next_player;
