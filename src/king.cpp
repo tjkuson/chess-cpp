@@ -40,7 +40,8 @@ void King::load_possible_moves(const Board& chess_board)
             piece_pos.get_offset(- 1, - 1),
     };
     // Copy moves to possible  moves vector if they are empty or attacking enemy
-    std::copy_if(king_moves.begin(), king_moves.end(),
+    std::copy_if(
+            king_moves.begin(), king_moves.end(),
             std::back_inserter(possible_moves),
             [&](const auto& possible_position) {
               if (chess_board.in_range(possible_position)) {
@@ -48,6 +49,7 @@ void King::load_possible_moves(const Board& chess_board)
                           or attacking_enemy(possible_position, chess_board);
               }
               return false;
-            });
+            }
+    );
 
 }

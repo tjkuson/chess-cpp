@@ -100,7 +100,8 @@ auto Piece::legal_move(const Position& init_pos, const Position& final_pos,
 void Piece::load_legal_moves(const Board& chess_board)
 {
     legal_moves.clear();
-    std::copy_if(possible_moves.begin(), possible_moves.end(),
+    std::copy_if(
+            possible_moves.begin(), possible_moves.end(),
             std::back_inserter(legal_moves),
             [&](const auto& trial_move) {
               return legal_move(piece_pos, trial_move, chess_board);

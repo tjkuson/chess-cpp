@@ -343,7 +343,8 @@ void Game::check_for_pawn_promotion()
     bool can_promote_pawn{false};
     Position promotable_pawn_pos;
     std::tie(can_promote_pawn, promotable_pawn_pos) = chess_board.promotable_pawn(
-            current_player);
+            current_player
+    );
     if (can_promote_pawn) {
         std::cout << "Can promote pawn!\n";
         bool asking_for_piece{true};
@@ -359,20 +360,28 @@ void Game::check_for_pawn_promotion()
                 }
                 Colour init_colour{current_player};
                 if (promotion == "q") {
-                    promoted_piece_ptr = std::make_shared<Queen>(init_colour,
-                            promotable_pawn_pos);
+                    promoted_piece_ptr = std::make_shared<Queen>(
+                            init_colour,
+                            promotable_pawn_pos
+                    );
                 }
                 else if (promotion == "r") {
-                    promoted_piece_ptr = std::make_shared<Rook>(init_colour,
-                            promotable_pawn_pos);
+                    promoted_piece_ptr = std::make_shared<Rook>(
+                            init_colour,
+                            promotable_pawn_pos
+                    );
                 }
                 else if (promotion == "k") {
-                    promoted_piece_ptr = std::make_shared<Knight>(init_colour,
-                            promotable_pawn_pos);
+                    promoted_piece_ptr = std::make_shared<Knight>(
+                            init_colour,
+                            promotable_pawn_pos
+                    );
                 }
                 else if (promotion == "b") {
-                    promoted_piece_ptr = std::make_shared<Bishop>(init_colour,
-                            promotable_pawn_pos);
+                    promoted_piece_ptr = std::make_shared<Bishop>(
+                            init_colour,
+                            promotable_pawn_pos
+                    );
                 }
                 else {
                     throw std::invalid_argument("Not a piece");
