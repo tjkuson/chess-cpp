@@ -41,6 +41,4 @@ namespace chess {
     };
 }  // namespace chess
 
-}// namespace chess
-
 #endif//CHESS_CLI_POSITION_H
