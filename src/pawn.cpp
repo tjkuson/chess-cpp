@@ -28,7 +28,7 @@ Pawn::Pawn(const Colour init_colour, const Position& init_pos)
 void Pawn::load_possible_moves(const Board& chess_board)
 {
     possible_moves.clear();
-    const int direction{piece_colour == Colour::white ? - 1 : 1};
+    const int direction{piece_colour == Colour::white ? -1 : 1};
     const Position one_step{piece_pos.get_offset(direction, 0)};
     if (chess_board.in_range(one_step)) {
         if (not chess_board.occupied(one_step)) {
@@ -53,6 +53,6 @@ void Pawn::load_possible_moves(const Board& chess_board)
           }
       }
     };
-    generate_attacks(- 1); // Check forward and to the left
+    generate_attacks(-1); // Check forward and to the left
     generate_attacks(1); // Check forward and to the right
 }

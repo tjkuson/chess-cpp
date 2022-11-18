@@ -30,7 +30,7 @@ Game::Game()
     Position piece_pos;
     std::shared_ptr<Piece> piece_ptr;
     // White and black pawns
-    for (int col{0}; col < cols; col ++) {
+    for (int col{0}; col < cols; col++) {
         piece_pos = Position{std::pair<int, int>{6, col}};
         piece_ptr = std::make_shared<Pawn>(Colour::white, piece_pos);
         chess_board.place_piece(piece_pos, piece_ptr);
@@ -85,9 +85,9 @@ void Game::print_chess_board() const
 {
     std::ostringstream str_stream;
     str_stream << std::endl << "  a b c d e f g h  \n";
-    for (int row{0}; row < rows; row ++) {
+    for (int row{0}; row < rows; row++) {
         str_stream << rows - row << " ";
-        for (int col{0}; col < cols; col ++) {
+        for (int col{0}; col < cols; col++) {
             std::string icon{"·", std::allocator<char>()};
             const Position position_visiting{std::pair<int, int>{row, col}};
             if (chess_board.occupied(position_visiting)) {
@@ -187,7 +187,7 @@ void Game::handle_move()
                 }
             }
             // Stop loop if the move input by the user is valid
-            asking_for_move = not (move_valid and owns_piece);
+            asking_for_move = not(move_valid and owns_piece);
             if (asking_for_move) {
                 std::cerr << "Invalid move, try again.\n";
             }
@@ -210,8 +210,8 @@ void Game::handle_move()
 // Check if the enemy can capture position
 auto Game::enemy_can_capture(const Position& test_pos) const -> bool
 {
-    for (int row{0}; row < rows; row ++) {
-        for (int col{0}; col < cols; col ++) {
+    for (int row{0}; row < rows; row++) {
+        for (int col{0}; col < cols; col++) {
             const Position visiting_pos{std::pair<int, int>{row, col}};
             if (chess_board.occupied(visiting_pos)) {
                 // Generate the legal moves for the piece being visited
@@ -231,8 +231,8 @@ auto Game::enemy_can_capture(const Position& test_pos) const -> bool
 // Generate the moves of all the pieces on the board
 void Game::generate_moves() const
 {
-    for (int row{0}; row < rows; row ++) {
-        for (int col{0}; col < cols; col ++) {
+    for (int row{0}; row < rows; row++) {
+        for (int col{0}; col < cols; col++) {
             const Position visiting_pos{std::pair<int, int>{row, col}};
             if (chess_board.occupied(visiting_pos)) {
                 // Generate the legal moves for the piece being visited
@@ -249,8 +249,8 @@ void Game::generate_moves() const
 auto Game::num_of_legal_moves() const -> int
 {
     int count{0};
-    for (int row{0}; row < rows; row ++) {
-        for (int col{0}; col < cols; col ++) {
+    for (int row{0}; row < rows; row++) {
+        for (int col{0}; col < cols; col++) {
             const Position visiting_pos{std::pair<int, int>{row, col}};
             if (chess_board.occupied(visiting_pos)) {
                 const std::shared_ptr<Piece> piece_pos{
@@ -279,7 +279,7 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
         bool searching{true};
         int offset{0};
         while (searching) {
-            ++ offset;
+            ++offset;
             const Position visiting_pos{king_pos.get_offset(0, offset)};
             if (chess_board.in_range(visiting_pos)) {
                 if (not chess_board.occupied(visiting_pos)) {
@@ -308,7 +308,7 @@ auto Game::can_castle(const Position& king_pos) const -> std::pair<bool, bool>
         searching = true;
         offset = 0;
         while (searching) {
-            -- offset;
+            --offset;
             const Position visiting_pos{king_pos.get_offset(0, offset)};
             if (chess_board.in_range(visiting_pos)) {
                 if (not chess_board.occupied(visiting_pos)) {
@@ -435,8 +435,8 @@ void Game::loop()
             // Check for en passant
             // TODO: Implement en passant
             // Next player
-            ++ current_player;
-            ++ next_player;
+            ++current_player;
+            ++next_player;
         }
     }
     std::cout << "Game over.\n";

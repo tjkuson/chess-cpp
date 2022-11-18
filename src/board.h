@@ -1,5 +1,5 @@
 // Chess CLI: command-line chess
-// Copyright (c) 2022. Tom Kuson
+// Copyright (c) 2022 Tom Kuson
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -38,8 +38,10 @@ public:
     [[nodiscard]] bool in_range(const Position& pos) const;
     [[nodiscard]] bool occupied(const Position& pos) const;
     void place_piece(const Position& pos, const std::shared_ptr<Piece>& piece_ptr);
-    void place_piece_no_update(const Position& pos,
-            const std::shared_ptr<Piece>& piece_ptr);
+    void place_piece_no_update(
+            const Position& pos,
+            const std::shared_ptr<Piece>& piece_ptr
+    );
     [[nodiscard]] std::shared_ptr<Piece> get_piece(const Position& pos) const;
     [[nodiscard]] Position find_king(const Colour& king_colour) const;
     [[nodiscard]] std::pair<bool, Position>

@@ -30,14 +30,14 @@ void Knight::load_possible_moves(const Board& chess_board)
     possible_moves.clear();
     const std::vector<Position> knight_moves{
             // Eight L-shaped moves
-            piece_pos.get_offset(2, - 1),
+            piece_pos.get_offset(2, -1),
             piece_pos.get_offset(2, 1),
-            piece_pos.get_offset(- 2, - 1),
-            piece_pos.get_offset(- 2, 1),
-            piece_pos.get_offset(1, - 2),
-            piece_pos.get_offset(- 1, - 2),
+            piece_pos.get_offset(-2, -1),
+            piece_pos.get_offset(-2, 1),
+            piece_pos.get_offset(1, -2),
+            piece_pos.get_offset(-1, -2),
             piece_pos.get_offset(1, 2),
-            piece_pos.get_offset(- 1, 2),
+            piece_pos.get_offset(-1, 2),
     };
     // Copy moves to possible  moves vector if they are empty or attacking enemy
     std::copy_if(

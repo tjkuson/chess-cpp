@@ -60,8 +60,10 @@ void Board::place_piece(const Position& pos, const std::shared_ptr<Piece>& piece
 
 // Store pointer to new piece in squares vector
 // This is used when we don't want the piece to change its location e.g. testing possible moves for checks
-void Board::place_piece_no_update(const Position& pos,
-        const std::shared_ptr<Piece>& piece_ptr)
+void Board::place_piece_no_update(
+        const Position& pos,
+        const std::shared_ptr<Piece>& piece_ptr
+)
 {
     int index{pos.get_index(dimensions)};
     squares[index] = piece_ptr;
@@ -79,8 +81,8 @@ auto Board::find_king(const Colour& king_colour) const -> Position
 {
     const std::string king_icon{king_colour == Colour::white ? "♔" : "♚",
                                 std::allocator<char>()};
-    for (int row{0}; row < dimensions.first; row ++) {
-        for (int col{0}; col < dimensions.second; col ++) {
+    for (int row{0}; row < dimensions.first; row++) {
+        for (int col{0}; col < dimensions.second; col++) {
             const Position visiting_pos{std::pair<int, int>{row, col}};
             if (occupied(visiting_pos)) {
                 const std::shared_ptr<Piece> piece_ptr{get_piece(visiting_pos)};
@@ -99,7 +101,7 @@ Board::promotable_pawn(const Colour& pawn_colour) const -> std::pair<bool, Posit
 {
     const int row{pawn_colour == Colour::white ? 0 : 7};
     const std::string pawn_icon{pawn_colour == Colour::white ? "♙" : "♟"};
-    for (int col{0}; col < dimensions.second; ++ col) {
+    for (int col{0}; col < dimensions.second; ++col) {
         const Position visiting_pos{std::pair<int, int>{row, col}};
         if (occupied(visiting_pos)) {
             const std::string piece_icon{get_piece(visiting_pos)->get_icon()};

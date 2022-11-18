@@ -53,8 +53,10 @@ auto Piece::possible_move(const Position& move) const -> bool
 }
 
 // Check is position points to enemy piece
-auto Piece::attacking_enemy(const Position& visiting_pos,
-        const Board& game_board) const -> bool
+auto Piece::attacking_enemy(
+        const Position& visiting_pos,
+        const Board& game_board
+) const -> bool
 {
     // Return false if no piece in square
     if (not game_board.occupied(visiting_pos)
@@ -67,8 +69,10 @@ auto Piece::attacking_enemy(const Position& visiting_pos,
 }
 
 // Return true if move does not put king in check
-auto Piece::legal_move(const Position& init_pos, const Position& final_pos,
-        Board chess_board) const -> bool
+auto Piece::legal_move(
+        const Position& init_pos, const Position& final_pos,
+        Board chess_board
+) const -> bool
 {
     // Create a temp chess board to see what happens should the move be permitted
     chess_board.place_piece_no_update(final_pos, chess_board.get_piece(init_pos));
@@ -76,8 +80,8 @@ auto Piece::legal_move(const Position& init_pos, const Position& final_pos,
     // Find the location of the king after the proposed move
     const Position king_pos{chess_board.find_king(piece_colour)};
     // Check if the enemy can attack the king after proposed move
-    for (int row{0}; row < 8; row ++) {
-        for (int col{0}; col < 8; col ++) {
+    for (int row{0}; row < 8; row++) {
+        for (int col{0}; col < 8; col++) {
             const Position visiting_pos{std::pair<int, int>{row, col}};
             if (chess_board.occupied(visiting_pos)) {
                 const std::shared_ptr<Piece> piece_ptr{

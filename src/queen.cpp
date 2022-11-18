@@ -31,7 +31,7 @@ void Queen::load_possible_moves(const Board& chess_board)
     // Lambda expression to search in a direction
     const auto generate_moves = [&](const int row_offset, const int col_offset) {
       bool searching{true};
-      for (int offset{1}; searching; ++ offset) {
+      for (int offset{1}; searching; ++offset) {
           const Position visiting{
                   piece_pos.get_offset(offset * row_offset, offset * col_offset)};
           // Stop searching when another piece is encountered
@@ -49,11 +49,11 @@ void Queen::load_possible_moves(const Board& chess_board)
       }
     };
     generate_moves(1, 0); // Move vertically down
-    generate_moves(- 1, 0); // Move vertically up
+    generate_moves(-1, 0); // Move vertically up
     generate_moves(0, 1); // Move vertically right
-    generate_moves(0, - 1); // Move vertically left
+    generate_moves(0, -1); // Move vertically left
     generate_moves(1, 1); // Move down and to the right
-    generate_moves(1, - 1); // Move down and to the left
-    generate_moves(- 1, 1); // Move up and to the right
-    generate_moves(- 1, - 1); // Move up and to the left
+    generate_moves(1, -1); // Move down and to the left
+    generate_moves(-1, 1); // Move up and to the right
+    generate_moves(-1, -1); // Move up and to the left
 }

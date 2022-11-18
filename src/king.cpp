@@ -32,12 +32,12 @@ void King::load_possible_moves(const Board& chess_board)
             // Eight directions the king can move
             piece_pos.get_offset(1, 1),
             piece_pos.get_offset(1, 0),
-            piece_pos.get_offset(1, - 1),
+            piece_pos.get_offset(1, -1),
             piece_pos.get_offset(0, 1),
-            piece_pos.get_offset(0, - 1),
-            piece_pos.get_offset(- 1, 1),
-            piece_pos.get_offset(- 1, 0),
-            piece_pos.get_offset(- 1, - 1),
+            piece_pos.get_offset(0, -1),
+            piece_pos.get_offset(-1, 1),
+            piece_pos.get_offset(-1, 0),
+            piece_pos.get_offset(-1, -1),
     };
     // Copy moves to possible  moves vector if they are empty or attacking enemy
     std::copy_if(
