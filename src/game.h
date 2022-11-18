@@ -18,47 +18,47 @@
 
 #include <iostream>
 
+#include "bishop.h"
 #include "board.h"
-#include "position.h"
 #include "colour.h"
-#include "pawn.h"
 #include "king.h"
+#include "knight.h"
+#include "pawn.h"
+#include "position.h"
 #include "queen.h"
 #include "rook.h"
-#include "bishop.h"
-#include "knight.h"
 
 namespace chess {
-    class Game {
-    private:
-        Board chess_board;
-        Colour current_player;
-        Colour next_player;
-        static constexpr int rows{8};
-        static constexpr int cols{8};
-        bool game_active;
-        bool white_castled;
-        bool black_castled;
-        bool can_castle_king_side;
-        bool can_castle_queen_side;
-        bool pawn_doubled_pushed_last_turn; // Used for en passant
-        int en_passant_col; // Read if pawn_doubled_pushed_last_turn is true
-    public:
-        // Prototype constructor and destructor
-        Game();
-        ~Game();
-        // Prototype functions
-        void print_chess_board() const;
-        void move_piece(const Position& init_pos, const Position& final_pos);
-        void handle_move();
-        [[nodiscard]] auto enemy_can_capture(const Position& test_pos) const -> bool;
-        void generate_moves() const;
-        [[nodiscard]] auto num_of_legal_moves() const -> int;
-        [[nodiscard]] auto
-        can_castle(const Position& king_pos) const -> std::pair<bool, bool>;
-        void check_for_pawn_promotion();
-        void loop();
-    };
-}  // namespace chess
+class Game {
+private:
+    Board chess_board;
+    Colour current_player;
+    Colour next_player;
+    static constexpr int rows{8};
+    static constexpr int cols{8};
+    bool game_active;
+    bool white_castled;
+    bool black_castled;
+    bool can_castle_king_side;
+    bool can_castle_queen_side;
+    bool pawn_doubled_pushed_last_turn;// Used for en passant
+    int en_passant_col;                // Read if pawn_doubled_pushed_last_turn is true
+public:
+    // Prototype constructor and destructor
+    Game();
+    ~Game();
+    // Prototype functions
+    void print_chess_board() const;
+    void move_piece(const Position& init_pos, const Position& final_pos);
+    void handle_move();
+    [[nodiscard]] auto enemy_can_capture(const Position& test_pos) const -> bool;
+    void generate_moves() const;
+    [[nodiscard]] auto num_of_legal_moves() const -> int;
+    [[nodiscard]] auto
+    can_castle(const Position& king_pos) const -> std::pair<bool, bool>;
+    void check_for_pawn_promotion();
+    void loop();
+};
+}// namespace chess
 
-#endif //CHESS_CLI_GAME_H
+#endif//CHESS_CLI_GAME_H

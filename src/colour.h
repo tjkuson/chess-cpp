@@ -19,13 +19,13 @@
 #include <sstream>
 
 namespace chess {
-    enum class Colour {
-        white,
-        black
-    };
-    auto operator++(Colour& passed_colour) noexcept -> Colour&;
-    auto operator<<(std::ostream& str_stream,
-            const Colour& passed_colour) noexcept -> std::ostream&;
-}
+enum class Colour {
+    white,
+    black
+};
+auto operator++(Colour& passed_colour) noexcept -> Colour&;
+auto operator<<(std::ostream& str_stream,
+                const Colour& passed_colour) noexcept -> std::ostream&;
+}// namespace chess
 
-#endif //CHESS_CLI_COLOUR_H
+#endif//CHESS_CLI_COLOUR_H
