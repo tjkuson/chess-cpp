@@ -17,20 +17,20 @@
 
 // Operator overloading works when namespace is declared as so
 namespace chess {
-// Overload ++ operator such that ++white == black, and ++black == white
-// Usage: to increment the turns, for example, "++current_turn".
-auto operator++(Colour& passed_colour) noexcept -> Colour&
-{
-    passed_colour = (passed_colour == Colour::black) ? Colour::white : Colour::black;
-    return passed_colour;
-}
-// Overload << operator so that the current turn can be printed to string stream
-auto operator<<(std::ostream& str_stream,
-        const Colour& passed_colour) noexcept -> std::ostream&
-{
-    std::string return_string{passed_colour == Colour::white ? "White" : "Black",
-                              std::allocator<char>()};
-    str_stream << return_string;
-    return str_stream;
-}
+    // Overload ++ operator such that ++white == black, and ++black == white
+    // Usage: to increment the turns, for example, "++current_turn".
+    auto operator++(Colour& passed_colour) noexcept -> Colour&
+    {
+        passed_colour = (passed_colour==Colour::black) ? Colour::white : Colour::black;
+        return passed_colour;
+    }
+    // Overload << operator so that the current turn can be printed to string stream
+    auto operator<<(std::ostream& str_stream,
+            const Colour& passed_colour) noexcept -> std::ostream&
+    {
+        std::string return_string{passed_colour==Colour::white ? "White" : "Black",
+                                  std::allocator<char>()};
+        str_stream << return_string;
+        return str_stream;
+    }
 }  // namespace chess

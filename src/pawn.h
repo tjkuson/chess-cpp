@@ -8,11 +8,11 @@
 #include "piece.h"
 
 namespace chess {
-class Pawn : public Piece {
-public:
-    Pawn(Colour init_colour, const Position& init_pos);
-    void load_possible_moves(const Board& chess_board) override;
-};
+    class Pawn : public Piece {
+    public:
+        Pawn(Colour init_colour, const Position& init_pos);
+        void load_possible_moves(const Board& chess_board) override;
+    };
 }
 
 #endif //CHESS_CLI_PAWN_H
