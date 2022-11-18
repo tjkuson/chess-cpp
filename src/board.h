@@ -20,6 +20,9 @@
 #include "main.h"
 #include "piece.h"
 #include "position.h"
+#include <memory>
+#include <vector>
+
 
 namespace chess {
 // Forward declare piece class to resolve circular dependency \
@@ -39,9 +42,8 @@ public:
     [[nodiscard]] bool in_range(const Position& pos) const;
     [[nodiscard]] bool occupied(const Position& pos) const;
     void place_piece(const Position& pos, const std::shared_ptr<Piece>& piece_ptr);
-    void place_piece_no_update(
-            const Position& pos,
-            const std::shared_ptr<Piece>& piece_ptr);
+    void place_piece_no_update(const Position& pos,
+                               const std::shared_ptr<Piece>& piece_ptr);
     [[nodiscard]] std::shared_ptr<Piece> get_piece(const Position& pos) const;
     [[nodiscard]] Position find_king(const Colour& king_colour) const;
     [[nodiscard]] std::pair<bool, Position>

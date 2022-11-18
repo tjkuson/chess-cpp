@@ -40,14 +40,13 @@ void Knight::load_possible_moves(const Board& chess_board)
             piece_pos.get_offset(-1, 2),
     };
     // Copy moves to possible  moves vector if they are empty or attacking enemy
-    std::copy_if(
-            knight_moves.begin(), knight_moves.end(),
-            std::back_inserter(possible_moves),
-            [&](const auto& possible_position) {
-                if (chess_board.in_range(possible_position)) {
-                    return not chess_board.occupied(possible_position)
-                            or attacking_enemy(possible_position, chess_board);
-                }
-                return false;
-            });
+    std::copy_if(knight_moves.begin(), knight_moves.end(),
+                 std::back_inserter(possible_moves),
+                 [&](const auto& possible_position) {
+                     if (chess_board.in_range(possible_position)) {
+                         return not chess_board.occupied(possible_position)
+                                 or attacking_enemy(possible_position, chess_board);
+                     }
+                     return false;
+                 });
 }

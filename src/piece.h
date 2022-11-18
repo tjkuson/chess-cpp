@@ -18,6 +18,7 @@
 
 #include "board.h"
 #include "colour.h"
+#include "position.h"
 #include <algorithm>
 #include <memory>
 #include <vector>
@@ -48,9 +49,8 @@ public:
     attacking_enemy(const Position& visiting_pos, const Board& game_board) const;
     // Take chess board by value as the function will manipulate piece positions
     [[nodiscard]] bool
-    legal_move(
-            const Position& init_pos, const Position& final_pos,
-            Board chess_board) const;
+    legal_move(const Position& init_pos, const Position& final_pos,
+               Board chess_board) const;
     void load_legal_moves(const Board& chess_board);
     [[nodiscard]] bool legal_move(const Position& move) const;
     // Prototype virtual functions to be overridden by derived classes

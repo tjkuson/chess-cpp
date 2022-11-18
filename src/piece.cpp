@@ -53,9 +53,8 @@ auto Piece::possible_move(const Position& move) const -> bool
 }
 
 // Check is position points to enemy piece
-auto Piece::attacking_enemy(
-        const Position& visiting_pos,
-        const Board& game_board) const -> bool
+auto Piece::attacking_enemy(const Position& visiting_pos,
+                            const Board& game_board) const -> bool
 {
     // Return false if no piece in square
     if (not game_board.occupied(visiting_pos)
@@ -68,9 +67,8 @@ auto Piece::attacking_enemy(
 }
 
 // Return true if move does not put king in check
-auto Piece::legal_move(
-        const Position& init_pos, const Position& final_pos,
-        Board chess_board) const -> bool
+auto Piece::legal_move(const Position& init_pos, const Position& final_pos,
+                       Board chess_board) const -> bool
 {
     // Create a temp chess board to see what happens should the move be permitted
     chess_board.place_piece_no_update(final_pos, chess_board.get_piece(init_pos));
@@ -102,12 +100,11 @@ auto Piece::legal_move(
 void Piece::load_legal_moves(const Board& chess_board)
 {
     legal_moves.clear();
-    std::copy_if(
-            possible_moves.begin(), possible_moves.end(),
-            std::back_inserter(legal_moves),
-            [&](const auto& trial_move) {
-                return legal_move(piece_pos, trial_move, chess_board);
-            });
+    std::copy_if(possible_moves.begin(), possible_moves.end(),
+                 std::back_inserter(legal_moves),
+                 [&](const auto& trial_move) {
+                     return legal_move(piece_pos, trial_move, chess_board);
+                 });
 }
 
 // Check if move is in list of legal moves

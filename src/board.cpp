@@ -60,9 +60,8 @@ void Board::place_piece(const Position& pos, const std::shared_ptr<Piece>& piece
 
 // Store pointer to new piece in squares vector
 // This is used when we don't want the piece to change its location e.g. testing possible moves for checks
-void Board::place_piece_no_update(
-        const Position& pos,
-        const std::shared_ptr<Piece>& piece_ptr)
+void Board::place_piece_no_update(const Position& pos,
+                                  const std::shared_ptr<Piece>& piece_ptr)
 {
     int index{pos.get_index(dimensions)};
     squares[index] = piece_ptr;

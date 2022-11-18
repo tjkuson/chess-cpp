@@ -24,9 +24,8 @@ enum class Colour {
     black
 };
 auto operator++(Colour& passed_colour) noexcept -> Colour&;
-auto operator<<(
-        std::ostream& str_stream,
-        const Colour& passed_colour) noexcept -> std::ostream&;
+auto operator<<(std::ostream& str_stream,
+                const Colour& passed_colour) noexcept -> std::ostream&;
 }// namespace chess
 
 #endif//CHESS_CLI_COLOUR_H

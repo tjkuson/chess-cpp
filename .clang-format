@@ -14,7 +14,7 @@ AllowShortIfStatementsOnASingleLine: Always
 AllowShortLambdasOnASingleLine: All
 AllowShortLoopsOnASingleLine: true
 AlwaysBreakAfterReturnType: None
-AlwaysBreakTemplateDeclarations: Yes
+AlwaysBreakTemplateDeclarations: MultiLine
 BreakBeforeBraces: Custom
 BraceWrapping:
   AfterCaseLabel: false
@@ -28,7 +28,7 @@ BraceWrapping:
   BeforeElse: true
   IndentBraces: false
   SplitEmptyFunction: false
-  SplitEmptyRecord: false
+  SplitEmptyRecord: true
 BreakBeforeBinaryOperators: NonAssignment
 BreakBeforeTernaryOperators: true
 BreakConstructorInitializers: BeforeColon

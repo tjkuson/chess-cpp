@@ -28,9 +28,8 @@ void Bishop::load_possible_moves(const Board& chess_board)
 {
     possible_moves.clear();
     // Lambda expression to search in a direction
-    const auto generate_moves = [this, &chess_board](
-                                        const int row_offset,
-                                        const int col_offset) {
+    const auto generate_moves = [this, &chess_board](const int row_offset,
+                                                     const int col_offset) {
         bool searching{true};
         for (int offset{1}; searching; ++offset) {
             const Position visiting{
