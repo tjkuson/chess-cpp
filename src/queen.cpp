@@ -21,7 +21,7 @@ using namespace chess;
 Queen::Queen(const Colour init_colour, const Position& init_pos)
     : Piece{init_colour, init_pos}
 {
-    piece_icon = (piece_colour==Colour::white) ? "♕" : "♛";
+    piece_icon = (piece_colour == Colour::white) ? "♕" : "♛";
 }
 
 // Find all possible horizontal, vertical, and diagonal moves, not considering king check
@@ -33,7 +33,7 @@ void Queen::load_possible_moves(const Board& chess_board)
         bool searching{true};
         for (int offset{1}; searching; ++offset) {
             const Position visiting{
-                    piece_pos.get_offset(offset*row_offset, offset*col_offset)};
+                    piece_pos.get_offset(offset * row_offset, offset * col_offset)};
             // Stop searching when another piece is encountered
             if (chess_board.in_range(visiting)) {
                 if (not chess_board.occupied(visiting)) {
@@ -48,12 +48,12 @@ void Queen::load_possible_moves(const Board& chess_board)
             searching = false;
         }
     };
-    generate_moves(1, 0); // Move vertically down
+    generate_moves(1, 0);  // Move vertically down
     generate_moves(-1, 0); // Move vertically up
-    generate_moves(0, 1); // Move vertically right
+    generate_moves(0, 1);  // Move vertically right
     generate_moves(0, -1); // Move vertically left
-    generate_moves(1, 1); // Move down and to the right
+    generate_moves(1, 1);  // Move down and to the right
     generate_moves(1, -1); // Move down and to the left
     generate_moves(-1, 1); // Move up and to the right
-    generate_moves(-1, -1); // Move up and to the left
+    generate_moves(-1, -1);// Move up and to the left
 }

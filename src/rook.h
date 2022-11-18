@@ -19,11 +19,11 @@
 #include "piece.h"
 
 namespace chess {
-    class Rook : public Piece {
-    public:
-        Rook(Colour init_colour, const Position& init_pos);
-        void load_possible_moves(const Board& chess_board) override;
-    };
-}
+class Rook : public Piece {
+public:
+    Rook(Colour init_colour, const Position& init_pos);
+    void load_possible_moves(const Board& chess_board) override;
+};
+}// namespace chess
 
 #endif//CHESS_CLI_ROOK_H
