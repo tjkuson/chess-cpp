@@ -23,6 +23,7 @@
 #include <memory>
 #include <vector>
 
+
 namespace chess {
 // Forward declare piece class to resolve circular dependency \
     This allows the board class to store piece class pointers before piece class has been defined

@@ -26,4 +26,4 @@ namespace chess {
     };
 }
 
-#endif //CHESS_CLI_QUEEN_H
+#endif//CHESS_CLI_QUEEN_H

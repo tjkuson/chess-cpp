@@ -26,4 +26,4 @@ namespace chess {
     };
 }
 
-#endif //CHESS_CLI_ROOK_H
+#endif//CHESS_CLI_ROOK_H

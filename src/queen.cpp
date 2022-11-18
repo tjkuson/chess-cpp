@@ -19,7 +19,7 @@ using namespace chess;
 
 // Parameterised constructor
 Queen::Queen(const Colour init_colour, const Position& init_pos)
-        :Piece{init_colour, init_pos}
+    : Piece{init_colour, init_pos}
 {
     piece_icon = (piece_colour==Colour::white) ? "♕" : "♛";
 }

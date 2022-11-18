@@ -16,10 +16,10 @@
 #ifndef CHESS_CLI_POSITION_H
 #define CHESS_CLI_POSITION_H
 
-#include <utility>
-#include <string>
-#include <stdexcept>
 #include <map>
+#include <stdexcept>
+#include <string>
+#include <utility>
 
 namespace chess {
     class Position {
@@ -41,4 +41,6 @@ namespace chess {
     };
 }  // namespace chess
 
-#endif //CHESS_CLI_POSITION_H
+}// namespace chess
+
+#endif//CHESS_CLI_POSITION_H
