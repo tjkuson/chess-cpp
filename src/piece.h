@@ -16,11 +16,11 @@
 #ifndef CHESS_CLI_PIECE_H
 #define CHESS_CLI_PIECE_H
 
+#include "board.h"
+#include "colour.h"
 #include <algorithm>
 #include <memory>
 #include <vector>
-#include "board.h"
-#include "colour.h"
 
 namespace chess {
 
@@ -33,7 +33,7 @@ protected:
     Position piece_pos;
     std::string piece_icon;
     std::vector<Position> possible_moves;
-    std::vector<Position> legal_moves; // Moves that don't put own king in check
+    std::vector<Position> legal_moves;// Moves that don't put own king in check
 public:
     // Prototype constructor and destructor
     Piece(const Colour init_colour, const Position& init_pos);
@@ -50,13 +50,12 @@ public:
     [[nodiscard]] bool
     legal_move(
             const Position& init_pos, const Position& final_pos,
-            Board chess_board
-    ) const;
+            Board chess_board) const;
     void load_legal_moves(const Board& chess_board);
     [[nodiscard]] bool legal_move(const Position& move) const;
     // Prototype virtual functions to be overridden by derived classes
     virtual void load_possible_moves(const Board& chess_board) = 0;
 };
-}
+}// namespace chess
 
-#endif //CHESS_CLI_PIECE_H
+#endif//CHESS_CLI_PIECE_H

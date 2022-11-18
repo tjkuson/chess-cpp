@@ -5,17 +5,18 @@
 #ifndef CHESS_CLI_POSITION_H
 #define CHESS_CLI_POSITION_H
 
-#include <utility>
-#include <string>
-#include <stdexcept>
 #include <map>
+#include <stdexcept>
+#include <string>
+#include <utility>
 
 namespace chess {
 class Position {
 private:
     std::pair<int, int> position_value;
     static const std::map<std::string,
-                          int> col_map; // constexpr std::map not possible for some reason
+                          int>
+            col_map;// constexpr std::map not possible for some reason
 public:
     // Prototype constructors and destructor
     Position();
@@ -29,6 +30,6 @@ public:
     [[nodiscard]] auto operator==(const Position& rhs) const noexcept -> bool;
     [[nodiscard]] auto get_index(std::pair<int, int> pair) const noexcept -> int;
 };
-}  // namespace chess
+}// namespace chess
 
-#endif //CHESS_CLI_POSITION_H
+#endif//CHESS_CLI_POSITION_H

@@ -19,7 +19,7 @@ using namespace chess;
 
 // Parameterised constructor
 Piece::Piece(const Colour init_colour, const Position& init_pos)
-        :piece_colour{init_colour}, piece_pos{init_pos} { }
+    : piece_colour{init_colour}, piece_pos{init_pos} {}
 
 // Default destructor
 Piece::~Piece() = default;
@@ -55,12 +55,11 @@ auto Piece::possible_move(const Position& move) const -> bool
 // Check is position points to enemy piece
 auto Piece::attacking_enemy(
         const Position& visiting_pos,
-        const Board& game_board
-) const -> bool
+        const Board& game_board) const -> bool
 {
     // Return false if no piece in square
     if (not game_board.occupied(visiting_pos)
-            or not game_board.in_range(visiting_pos)) {
+        or not game_board.in_range(visiting_pos)) {
         return false;
     }
     // Return false if piece is of same colour
@@ -71,12 +70,11 @@ auto Piece::attacking_enemy(
 // Return true if move does not put king in check
 auto Piece::legal_move(
         const Position& init_pos, const Position& final_pos,
-        Board chess_board
-) const -> bool
+        Board chess_board) const -> bool
 {
     // Create a temp chess board to see what happens should the move be permitted
     chess_board.place_piece_no_update(final_pos, chess_board.get_piece(init_pos));
-    chess_board.place_piece_no_update(init_pos, nullptr); // Empty vacated position
+    chess_board.place_piece_no_update(init_pos, nullptr);// Empty vacated position
     // Find the location of the king after the proposed move
     const Position king_pos{chess_board.find_king(piece_colour)};
     // Check if the enemy can attack the king after proposed move
@@ -108,9 +106,8 @@ void Piece::load_legal_moves(const Board& chess_board)
             possible_moves.begin(), possible_moves.end(),
             std::back_inserter(legal_moves),
             [&](const auto& trial_move) {
-              return legal_move(piece_pos, trial_move, chess_board);
-            }
-    );
+                return legal_move(piece_pos, trial_move, chess_board);
+            });
 }
 
 // Check if move is in list of legal moves

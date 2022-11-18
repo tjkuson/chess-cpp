@@ -25,36 +25,31 @@ const std::map<std::string, int> Position::col_map{
         {"e", 4},
         {"f", 5},
         {"g", 6},
-        {"h", 7}
-};
+        {"h", 7}};
 
 // Default constructor
 Position::Position()
-        :position_value{0, 0} { }
+    : position_value{0, 0} {}
 
 // Parameterised integer pair constructor
 Position::Position(const std::pair<int, int> init_pos)
-        :position_value{init_pos} { }
+    : position_value{init_pos} {}
 
 // Parameterised string pair constructor
 // Makes code neater if string conversion occurs in position class constructor
 Position::Position(const std::pair<std::string, std::string>& init_pos)
-        :position_value{[&]() {
-  // Algebraic notation i.e. "xN" e.g. "e3"
-  if (init_pos.first.length() != 1 or init_pos.second.length() != 1) {
-      throw std::invalid_argument(
-              "Position constructor string too large, should be single char"
-      );
-  }
-  const int row{8 - std::stoi(
-          init_pos.second
-  )}; // This will throw std::invalid_argument on conversion fail
-  // std::allocator<std::pair<std::string, int>>()
-  const int col{col_map.at(
-          init_pos.first
-  )}; // This will throw std::out_of_range on conversion fail
-  return std::pair<int, int>{row, col};
-}()} { }
+    : position_value{[&]() {
+          // Algebraic notation i.e. "xN" e.g. "e3"
+          if (init_pos.first.length() != 1 or init_pos.second.length() != 1) {
+              throw std::invalid_argument(
+                      "Position constructor string too large, should be single char");
+          }
+          const int row{8 - std::stoi(init_pos.second)};// This will throw std::invalid_argument on conversion fail
+          // std::allocator<std::pair<std::string, int>>()
+          const int col{col_map.at(
+                  init_pos.first)};// This will throw std::out_of_range on conversion fail
+          return std::pair<int, int>{row, col};
+      }()} {}
 
 // Default destructor
 Position::~Position() = default;

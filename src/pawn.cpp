@@ -19,7 +19,7 @@ using namespace chess;
 
 // Parameterised constructor
 Pawn::Pawn(const Colour init_colour, const Position& init_pos)
-        :Piece{init_colour, init_pos}
+    : Piece{init_colour, init_pos}
 {
     piece_icon = (piece_colour == Colour::white) ? "♙" : "♟";
 }
@@ -35,7 +35,7 @@ void Pawn::load_possible_moves(const Board& chess_board)
             possible_moves.push_back(one_step);
             int row{piece_pos.get_position().first};
             if ((row == 6 and piece_colour == Colour::white)
-                    or (row == 1 and piece_colour == Colour::black)) {
+                or (row == 1 and piece_colour == Colour::black)) {
                 // Can move up by two squares if pawn has not yet moved
                 const Position two_step{piece_pos.get_offset(2 * direction, 0)};
                 if (not chess_board.occupied(two_step)) {
@@ -46,13 +46,13 @@ void Pawn::load_possible_moves(const Board& chess_board)
     }
     // Pawn can move up diagonally only if attacking
     const auto generate_attacks = [&](const int col_offset) {
-      const Position attack_position{piece_pos.get_offset(direction, col_offset)};
-      if (chess_board.in_range(attack_position)) {
-          if (attacking_enemy(attack_position, chess_board)) {
-              possible_moves.push_back(attack_position);
-          }
-      }
+        const Position attack_position{piece_pos.get_offset(direction, col_offset)};
+        if (chess_board.in_range(attack_position)) {
+            if (attacking_enemy(attack_position, chess_board)) {
+                possible_moves.push_back(attack_position);
+            }
+        }
     };
-    generate_attacks(-1); // Check forward and to the left
+    generate_attacks(-1);// Check forward and to the left
     generate_attacks(1); // Check forward and to the right
 }

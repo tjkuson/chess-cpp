@@ -13,6 +13,6 @@ public:
     Knight(Colour init_colour, const Position& init_pos);
     void load_possible_moves(const Board& chess_board) override;
 };
-}
+}// namespace chess
 
-#endif //CHESS_CLI_KNIGHT_H
+#endif//CHESS_CLI_KNIGHT_H

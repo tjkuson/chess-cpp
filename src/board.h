@@ -16,10 +16,10 @@
 #ifndef CHESS_CLI_BOARD_H
 #define CHESS_CLI_BOARD_H
 
-#include "main.h"
-#include "position.h"
-#include "piece.h"
 #include "colour.h"
+#include "main.h"
+#include "piece.h"
+#include "position.h"
 
 namespace chess {
 // Forward declare piece class to resolve circular dependency \
@@ -28,8 +28,9 @@ class Piece;
 
 class Board {
 private:
-    const std::pair<int, int> dimensions; // row, col
+    const std::pair<int, int> dimensions;// row, col
     std::vector<std::shared_ptr<Piece>> squares;
+
 public:
     // Prototype constructor and destructor
     Board(int rows, int cols);
@@ -40,14 +41,13 @@ public:
     void place_piece(const Position& pos, const std::shared_ptr<Piece>& piece_ptr);
     void place_piece_no_update(
             const Position& pos,
-            const std::shared_ptr<Piece>& piece_ptr
-    );
+            const std::shared_ptr<Piece>& piece_ptr);
     [[nodiscard]] std::shared_ptr<Piece> get_piece(const Position& pos) const;
     [[nodiscard]] Position find_king(const Colour& king_colour) const;
     [[nodiscard]] std::pair<bool, Position>
     promotable_pawn(const Colour& pawn_colour) const;
     [[nodiscard]] auto get_icon(const Position& pos) const noexcept -> std::string;
 };
-}
+}// namespace chess
 
-#endif //CHESS_CLI_BOARD_H
+#endif//CHESS_CLI_BOARD_H

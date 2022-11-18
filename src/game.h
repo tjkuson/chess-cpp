@@ -18,15 +18,15 @@
 
 #include <iostream>
 
+#include "bishop.h"
 #include "board.h"
-#include "position.h"
 #include "colour.h"
-#include "pawn.h"
 #include "king.h"
+#include "knight.h"
+#include "pawn.h"
+#include "position.h"
 #include "queen.h"
 #include "rook.h"
-#include "bishop.h"
-#include "knight.h"
 
 namespace chess {
 class Game {
@@ -41,8 +41,8 @@ private:
     bool black_castled;
     bool can_castle_king_side;
     bool can_castle_queen_side;
-    bool pawn_doubled_pushed_last_turn; // Used for en passant
-    int en_passant_col; // Read if pawn_doubled_pushed_last_turn is true
+    bool pawn_doubled_pushed_last_turn;// Used for en passant
+    int en_passant_col;                // Read if pawn_doubled_pushed_last_turn is true
 public:
     // Prototype constructor and destructor
     Game();
@@ -59,6 +59,6 @@ public:
     void check_for_pawn_promotion();
     void loop();
 };
-}  // namespace chess
+}// namespace chess
 
-#endif //CHESS_CLI_GAME_H
+#endif//CHESS_CLI_GAME_H

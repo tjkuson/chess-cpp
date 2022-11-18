@@ -27,12 +27,11 @@ auto operator++(Colour& passed_colour) noexcept -> Colour&
 // Overload << operator so that the current turn can be printed to string stream
 auto operator<<(
         std::ostream& str_stream,
-        const Colour& passed_colour
-) noexcept -> std::ostream&
+        const Colour& passed_colour) noexcept -> std::ostream&
 {
     std::string return_string{passed_colour == Colour::white ? "White" : "Black",
                               std::allocator<char>()};
     str_stream << return_string;
     return str_stream;
 }
-}  // namespace chess
+}// namespace chess

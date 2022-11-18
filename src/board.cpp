@@ -13,14 +13,14 @@
 // You should have received a copy of the GNU General Public License
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
-#include <iostream>
 #include "board.h"
+#include <iostream>
 
 using namespace chess;
 
 // Parameterised constructor
 Board::Board(int rows, int cols)
-        :dimensions{rows, cols}
+    : dimensions{rows, cols}
 {
     // Use auto to avoid multiplication result conversions to a different (non-int) type
     auto number_of_squares = rows * cols;
@@ -62,8 +62,7 @@ void Board::place_piece(const Position& pos, const std::shared_ptr<Piece>& piece
 // This is used when we don't want the piece to change its location e.g. testing possible moves for checks
 void Board::place_piece_no_update(
         const Position& pos,
-        const std::shared_ptr<Piece>& piece_ptr
-)
+        const std::shared_ptr<Piece>& piece_ptr)
 {
     int index{pos.get_index(dimensions)};
     squares[index] = piece_ptr;
@@ -96,8 +95,7 @@ auto Board::find_king(const Colour& king_colour) const -> Position
 }
 
 // Check if pawn can be promoted
-auto
-Board::promotable_pawn(const Colour& pawn_colour) const -> std::pair<bool, Position>
+auto Board::promotable_pawn(const Colour& pawn_colour) const -> std::pair<bool, Position>
 {
     const int row{pawn_colour == Colour::white ? 0 : 7};
     const std::string pawn_icon{pawn_colour == Colour::white ? "♙" : "♟"};

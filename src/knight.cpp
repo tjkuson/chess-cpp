@@ -19,7 +19,7 @@ using namespace chess;
 
 // Parameterised constructor
 Knight::Knight(const Colour init_colour, const Position& init_pos)
-        :Piece{init_colour, init_pos}
+    : Piece{init_colour, init_pos}
 {
     piece_icon = (piece_colour == Colour::white) ? "♘" : "♞";
 }
@@ -44,11 +44,10 @@ void Knight::load_possible_moves(const Board& chess_board)
             knight_moves.begin(), knight_moves.end(),
             std::back_inserter(possible_moves),
             [&](const auto& possible_position) {
-              if (chess_board.in_range(possible_position)) {
-                  return not chess_board.occupied(possible_position)
-                          or attacking_enemy(possible_position, chess_board);
-              }
-              return false;
-            }
-    );
+                if (chess_board.in_range(possible_position)) {
+                    return not chess_board.occupied(possible_position)
+                            or attacking_enemy(possible_position, chess_board);
+                }
+                return false;
+            });
 }
