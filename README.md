@@ -5,17 +5,8 @@
 
 This is a cross-platform command-line chess game written in object-orientated modern C++
 using only the Standard Library. It aims to demonstrate the implementation of advanced
-C++ code features. Users are free to study, modify, and redistribute the source code in
-compliance with the GPLv3 software licence.
-
-Most recent release: Chess-CLI v1.0.2 (22 May 2021).
-
-## Table of contents
-
-- [Setup](#setup)
-- [Game functionality](#game-functionality)
-- [Code features](#code-features)
-- [Project status](#project-status)
+C++ code features. Users are free to study, modify, and redistribute the source code as
+per the software licence.
 
 ## Setup
 
@@ -49,7 +40,7 @@ g++ main.cpp game.cpp bishop.cpp board.cpp king.cpp knight.cpp pawn.cpp piece.cp
 - Smart pointers
 - Exception handling
 - Use of the Standard Library (for example, use of container classes)
-- Lambda expressions
+- Lambda expressions (anonymous functions)
 
 _Note: files are referred to as columns (cols) in the code to avoid confusion with the
 file system._
@@ -60,11 +51,6 @@ file system._
 - Templates
 - Substantial input/output interface, namely reading and writing to storage
 
-## Project status
-
-Project is in progress.
-
 ## Licence
 
-This project is open-source and available under the [GNU GPL version 3](LICENCE) or
-later.
+This project is distributed under the [GNU GPL version 3](LICENCE).
