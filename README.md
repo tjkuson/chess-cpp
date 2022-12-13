@@ -66,5 +66,5 @@ Project is in progress.
 
 ## Licence
 
-This project is open-source and available under the [GNU GPL version 3](LICENSE) or
+This project is open-source and available under the [GNU GPL version 3](LICENCE) or
 later.
