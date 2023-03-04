@@ -1,5 +1,5 @@
 // Chess CLI: command-line chess
-// Copyright (c) 2022 Tom Kuson
+// Copyright (c) 2022-2023 Tom Kuson
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or
@@ -14,9 +14,6 @@
 // along with this program.  If not, see <https://www.gnu.org/licenses/>.
 
 #include "game.h"
-
-// Nasty compile command \
-// g++ main.cpp game.cpp bishop.cpp board.cpp king.cpp knight.cpp pawn.cpp piece.cpp position.cpp queen.cpp rook.cpp colour.cpp -o ../bin/main.out
 
 auto main() -> int
 {
