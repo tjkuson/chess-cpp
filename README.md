@@ -16,7 +16,7 @@ To compile and execute using GCC and G++, run the following.
 
 ```commandline
 cd ../src
-g++ main.cpp game.cpp bishop.cpp board.cpp king.cpp knight.cpp pawn.cpp piece.cpp position.cpp queen.cpp rook.cpp colour.cpp -o ../bin/main.out
+g++ main.cpp game.cpp bishop.cpp Board.cpp king.cpp knight.cpp pawn.cpp Piece.cpp position.cpp queen.cpp rook.cpp colour.cpp -o ../bin/main.out
 ./../bin/main.out
 ```
 
