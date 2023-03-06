@@ -6,7 +6,7 @@
 
 class Board {
 private:
-    const std::vector<std::vector<piece>> pieces;
+    std::vector<std::vector<Piece>> pieces;// vector of all 32 pieces
 
 public:
     Board();// Construct with default pieces

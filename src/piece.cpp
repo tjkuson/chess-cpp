@@ -21,3 +21,9 @@ void Piece::set_position(std::pair<int, int> pos)
     Piece::position = pos;
 }
 // Piece::set_colour is not defined because the colour of a piece is immutable
+
+// Overload the << operator to print the piece
+auto operator<<(std::ostream& output_stream, const Piece& piece) noexcept -> std::ostream&
+{
+    return output_stream << piece.icon;
+}
