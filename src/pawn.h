@@ -11,4 +11,4 @@ public:
     ~Pawn() noexcept override = default;
 };
 
-#endif//CHESS_CLI_PAWN_H
+#endif // CHESS_CLI_PAWN_H

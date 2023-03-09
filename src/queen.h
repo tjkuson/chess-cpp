@@ -11,4 +11,4 @@ public:
     ~Queen() noexcept override = default;
 };
 
-#endif//CHESS_CLI_QUEEN_H
+#endif // CHESS_CLI_QUEEN_H

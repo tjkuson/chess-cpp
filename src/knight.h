@@ -11,4 +11,4 @@ public:
     ~Knight() noexcept override = default;
 };
 
-#endif//CHESS_CLI_KNIGHT_H
+#endif // CHESS_CLI_KNIGHT_H

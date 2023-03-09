@@ -11,4 +11,4 @@ public:
     ~King() noexcept override = default;
 };
 
-#endif//CHESS_CLI_KING_H
+#endif // CHESS_CLI_KING_H

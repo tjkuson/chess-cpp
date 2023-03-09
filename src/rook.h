@@ -11,4 +11,4 @@ public:
     ~Rook() noexcept override = default;
 };
 
-#endif//CHESS_CLI_ROOK_H
+#endif // CHESS_CLI_ROOK_H

@@ -11,4 +11,4 @@ public:
     ~Bishop() noexcept override = default;
 };
 
-#endif//CHESS_CLI_BISHOP_H
+#endif // CHESS_CLI_BISHOP_H

@@ -7,7 +7,8 @@ auto operator!(Colour colour) noexcept -> Colour
 }
 
 // Overload the insertion operator to print the colour
-auto operator<<(std::ostream& output_stream, Colour colour) noexcept -> std::ostream&
+auto operator<<(std::ostream& output_stream, Colour colour) noexcept
+    -> std::ostream&
 {
     return output_stream << (colour == Colour::white ? "white" : "black");
 }
