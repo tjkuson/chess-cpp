@@ -6,7 +6,9 @@
 
 class Board {
 private:
-    std::vector<std::vector<Piece>> pieces;// vector of all 32 pieces
+    std::vector<Piece> pieces;// vector of all 32 pieces
+    constexpr static auto ranks{8};
+    constexpr static auto files{8};
 
 public:
     Board();// Construct with default pieces
