@@ -11,6 +11,8 @@ private:
 public:
     Board();// Construct with default pieces
     ~Board();
+    // Overload the << operator to print the board
+    friend auto operator<<(std::ostream& output_stream, const Board& board) noexcept -> std::ostream&;
 };
 
 #endif//CHESS_CLI_BOARD_H
