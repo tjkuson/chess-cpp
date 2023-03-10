@@ -1,18 +1,55 @@
 #include "board.h"
+#include "bishop.h"
+#include "king.h"
+#include "knight.h"
 #include "pawn.h"
+#include "queen.h"
+#include "rook.h"
 
 // Default constructor
 Board::Board()
 {
-    constexpr auto num_pieces{32};
+    // We know precisely the number of pieces, so we can reserve memory manually
     pieces.reserve(num_pieces);
-    // Add the pawns
-    constexpr auto white_pawn_rank{2};
-    constexpr auto black_pawn_rank{7};
+    // Add the pieces, starting with the pawns
     for (auto file{1}; file <= files; ++file) {
         pieces.emplace_back(Pawn({white_pawn_rank, file}, Colour::white));
         pieces.emplace_back(Pawn({black_pawn_rank, file}, Colour::black));
     }
+    constexpr auto rook_left_file{1};
+    constexpr auto rook_right_file{8};
+    pieces.emplace_back(Rook({white_back_rank, rook_left_file}, Colour::white));
+    pieces.emplace_back(
+        Rook({white_back_rank, rook_right_file}, Colour::white));
+    pieces.emplace_back(Rook({black_back_rank, rook_left_file}, Colour::black));
+    pieces.emplace_back(
+        Rook({black_back_rank, rook_right_file}, Colour::black));
+    constexpr auto knight_left_file{2};
+    constexpr auto knight_right_file{7};
+    pieces.emplace_back(
+        Knight({white_back_rank, knight_left_file}, Colour::white));
+    pieces.emplace_back(
+        Knight({white_back_rank, knight_right_file}, Colour::white));
+    pieces.emplace_back(
+        Knight({black_back_rank, knight_left_file}, Colour::black));
+    pieces.emplace_back(
+        Knight({black_back_rank, knight_right_file}, Colour::black));
+    constexpr auto bishop_left_file{3};
+    constexpr auto bishop_right_file{6};
+    pieces.emplace_back(
+        Bishop({white_back_rank, bishop_left_file}, Colour::white));
+    pieces.emplace_back(
+        Bishop({white_back_rank, bishop_right_file}, Colour::white));
+    pieces.emplace_back(
+        Bishop({black_back_rank, bishop_left_file}, Colour::black));
+    pieces.emplace_back(
+        Bishop({black_back_rank, bishop_right_file}, Colour::black));
+    constexpr auto queen_file{4};
+    pieces.emplace_back(Queen({white_back_rank, queen_file}, Colour::white));
+    pieces.emplace_back(Queen({black_back_rank, queen_file}, Colour::black));
+    constexpr auto king_file{5};
+    pieces.emplace_back(King({white_back_rank, king_file}, Colour::white));
+    pieces.emplace_back(King({black_back_rank, king_file}, Colour::black));
 }
 
 // Destructor
