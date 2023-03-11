@@ -3,8 +3,8 @@
 
 // Constructor; note that the position is passed by value and then moved into
 // the position member variable
-Piece::Piece(std::pair<int, int> position, Colour colour)
-    : position(std::move(position)), colour(colour)
+Piece::Piece(std::pair<int, int> position, Colour colour, piece_type type)
+    : position(std::move(position)), colour(colour), type(type)
 {}
 // Destructor
 Piece::~Piece() noexcept = default;
@@ -22,7 +22,10 @@ void Piece::set_position(std::pair<int, int> pos)
 {
     Piece::position = pos;
 }
-// Piece::set_colour is not defined because the colour of a piece is immutable
+auto Piece::get_type() const -> piece_type
+{
+    return type;
+}
 
 // Overload the << operator to print the piece
 auto operator<<(std::ostream& output_stream, const Piece& piece) noexcept

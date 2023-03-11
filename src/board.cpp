@@ -80,3 +80,51 @@ auto operator<<(std::ostream& output_stream, const Board& board) noexcept
     }
     return output_stream;
 }
+auto Board::get_square_set(Colour colour) const noexcept
+    -> std::vector<std::vector<bool>>
+{
+    std::vector<std::vector<bool>> square_set;
+    square_set.reserve(ranks);
+    for (auto rank{1}; rank <= files; ++rank) {
+        std::vector<bool> rank_set;
+        rank_set.reserve(files);
+        for (auto file{1}; file <= files; ++file) {
+            bool square{false};
+            for (const auto& piece: pieces) {
+                if (piece.get_position() == std::pair<int, int>{rank, file}
+                    && piece.get_colour() == colour) {
+                    square = true;
+                    break;
+                }
+            }
+            // Add rank_set to square_set if we are at the end of the rank
+            rank_set.push_back(square);
+        }
+        square_set.push_back(rank_set);
+    }
+    return square_set;
+}
+auto Board::get_square_set(piece_type type) const noexcept
+    -> std::vector<std::vector<bool>>
+{
+    std::vector<std::vector<bool>> square_set;
+    square_set.reserve(ranks);
+    for (auto rank{1}; rank <= files; ++rank) {
+        std::vector<bool> rank_set;
+        rank_set.reserve(files);
+        for (auto file{1}; file <= files; ++file) {
+            bool square{false};
+            for (const auto& piece: pieces) {
+                if (piece.get_position() == std::pair<int, int>{rank, file}
+                    && piece.get_type() == type) {
+                    square = true;
+                    break;
+                }
+            }
+            // Add rank_set to square_set if we are at the end of the rank
+            rank_set.push_back(square);
+        }
+        square_set.push_back(rank_set);
+    }
+    return square_set;
+}
